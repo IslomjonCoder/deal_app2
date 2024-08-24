@@ -1,7 +1,6 @@
+import 'package:deal_app/pages/intro_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'pages/main_home_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
               fontFamily: "SfPro",
               primaryColor: Colors.white,
               iconTheme: const IconThemeData(color: Colors.white)),
-          home: const MainHomeScreen()),
+          home: const IntroPage()),
     );
   }
 }
