@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../colors.dart';
 import '../widgets/background_gradient_overlay.dart';
 import '../widgets/emojis.dart';
 import '../widgets/login_button.dart';
