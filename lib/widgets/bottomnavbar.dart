@@ -15,7 +15,7 @@ class Bottomnavbar extends StatelessWidget {
         valueListenable: TabManager.selectedIndex,
         builder: (context, value, child) {
           return Container(
-            height: value == 3 ? 110.h : null,
+            height: value == 3 ? 100.h : null,
             decoration: value == 3
                 ? ShapeDecoration(
                     gradient: const LinearGradient(

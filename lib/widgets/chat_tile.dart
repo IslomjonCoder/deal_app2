@@ -8,6 +8,7 @@ class ChatTile extends StatelessWidget {
   final String time;
   final VoidCallback onTap;
   final int unreadMessages;
+  final bool isOnline;
 
   const ChatTile({
     super.key,
@@ -16,6 +17,7 @@ class ChatTile extends StatelessWidget {
     required this.name,
     required this.time,
     required this.onTap,
+    required this.isOnline,
     required this.unreadMessages,
   });
 
@@ -28,8 +30,14 @@ class ChatTile extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 16.w),
         child: Row(
           children: [
-            CircleAvatar(
-              child: Image.asset(image),
+            Badge(
+              backgroundColor:
+                  isOnline ? Color(0xFF0ED221) : Colors.transparent,
+              smallSize: 10.r,
+              alignment: Alignment.topLeft,
+              child: CircleAvatar(
+                child: Image.asset(image),
+              ),
             ),
             SizedBox(
               width: 10.w,

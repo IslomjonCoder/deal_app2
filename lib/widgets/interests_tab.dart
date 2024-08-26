@@ -24,6 +24,16 @@ class InterestsTab extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             color: isAdded ? Colors.white : Colors.transparent,
+            boxShadow: isAdded
+                ? [
+                    BoxShadow(
+                      color: Color(0x26000000),
+                      blurRadius: 20.sp,
+                      offset: const Offset(0, 5),
+                      spreadRadius: 0,
+                    )
+                  ]
+                : null,
             border: isAdded
                 ? null
                 : Border.all(

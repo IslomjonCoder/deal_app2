@@ -188,7 +188,7 @@ class _ProfilePageState extends State<ProfilePage> {
             children: [
               Flexible(
                 child: SizedBox(
-                  width: 275,
+                  width: 275.w,
                   child: Text(
                     'Напиши здесь три тезиса о себе и ИИ поможет сделать остальное',
                     style: TextStyle(
@@ -202,7 +202,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                width: 10.w,
               ),
               MaterialButton(
                 onPressed: () {

@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../widgets/background_gradient_overlay.dart';
 import '../widgets/message_tile.dart';
 
@@ -36,7 +35,14 @@ const List<Message> messages = [
 ];
 
 class ChatDetail extends StatefulWidget {
-  const ChatDetail({super.key});
+  final String name;
+  final int age;
+  final bool isOnline = true;
+  const ChatDetail({
+    super.key,
+    required this.name,
+    required this.age,
+  });
 
   @override
   State<ChatDetail> createState() => _ChatDetailState();
@@ -150,6 +156,111 @@ class _ChatDetailState extends State<ChatDetail> {
                   cursorColor: Color(0xFF007AFF),
                   cursorWidth: 2.w,
                   cursorHeight: 21.h,
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 80.h, horizontal: 16.w),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  constraints: BoxConstraints(
+                    minWidth: 30.sp,
+                    minHeight: 30.sp,
+                    // maxWidth: 55.sp,
+                    // maxHeight: 55.sp
+                  ),
+                  decoration: ShapeDecoration(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    shadows: [
+                      BoxShadow(
+                        color: Color(0x26000000),
+                        blurRadius: 20,
+                        offset: Offset(0, 5),
+                        spreadRadius: 0,
+                      )
+                    ],
+                  ),
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    // highlightElevation: 0,
+                    padding: EdgeInsets.zero,
+                    icon: Icon(
+                      Icons.chevron_left,
+                      size: 41.sp,
+                      color: Colors.black.withOpacity(0.6),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 80.h),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  margin: EdgeInsets.zero,
+                  padding: EdgeInsets.symmetric(horizontal: 9.w, vertical: 8.h),
+                  decoration: ShapeDecoration(
+                    color: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.r),
+                    ),
+                    shadows: [
+                      BoxShadow(
+                        color: Color(0x26000000),
+                        blurRadius: 20,
+                        offset: Offset(0, 5),
+                        spreadRadius: 0,
+                      )
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Badge(
+                        backgroundColor: Color(0xFF0ED221),
+                        smallSize: 11.sp,
+                        alignment: Alignment.topLeft,
+                        child: CircleAvatar(
+                          radius: 16.sp,
+                          backgroundImage:
+                              AssetImage("assets/images/avatar.png"),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 4.w,
+                      ),
+                      Text(
+                        '${widget.name}, ${widget.age}',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 21.sp,
+                          fontFamily: 'SF Pro',
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 3.w,
+                      ),
+                      MaterialButton(
+                          onPressed: () {},
+                          padding: EdgeInsets.zero,
+                          minWidth: 5.w,
+                          materialTapTargetSize:
+                              MaterialTapTargetSize.shrinkWrap,
+                          child: Icon(
+                            size: 30,
+                            Icons.keyboard_arrow_down,
+                            color: Colors.black.withOpacity(0.6),
+                          ))
+                    ],
+                  ),
                 ),
               ),
             ),

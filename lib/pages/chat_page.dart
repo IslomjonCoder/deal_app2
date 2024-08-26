@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,7 +13,9 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const AppbarTitle(text: "Чаты"),
+        Padding(
+            padding: EdgeInsets.only(bottom: 5.h, top: 5.h),
+            child: const AppbarTitle(text: "Чаты")),
         SizedBox(
           height: 5.h,
         ),
@@ -25,11 +28,13 @@ class ChatPage extends StatelessWidget {
             child: ListView.builder(
               itemBuilder: (context, index) {
                 return ChatTile(
+                  isOnline: Random().nextBool(),
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const ChatDetail(),
+                          builder: (context) =>
+                              const ChatDetail(name: 'Георгий', age: 24),
                         ));
                   },
                   image: "assets/images/avatar.png",

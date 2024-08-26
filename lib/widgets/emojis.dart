@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class EmojiLayout extends StatelessWidget {
   final List<List<String>> emojis = [
     [
-      '🏢',
+      '🏬',
       '🔑',
     ],
     [
@@ -16,7 +16,7 @@ class EmojiLayout extends StatelessWidget {
       '👋',
       '🔥',
     ],
-    ['💎', '🦄', '🚀']
+    ['🦄', '💎', '🚀']
   ];
 
   EmojiLayout({super.key});
@@ -27,7 +27,7 @@ class EmojiLayout extends StatelessWidget {
       children: [
         for (var row in emojis)
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 2),
+            padding: EdgeInsets.symmetric(vertical: 1.sp),
             child: Row(
               mainAxisAlignment: row.length == 2
                   ? MainAxisAlignment.spaceEvenly
@@ -49,6 +49,6 @@ class EmojiWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(emoji, style: TextStyle(fontSize: 40.sp));
+    return Text(emoji, style: TextStyle(fontSize: 35.sp));
   }
 }

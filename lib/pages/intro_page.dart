@@ -33,40 +33,17 @@ class IntroPage extends StatelessWidget {
             children: [
               EmojiLayout(),
               SizedBox(
-                height: 20.h,
+                height: 10.h,
               ),
-              Container(
-                constraints: BoxConstraints(maxWidth: 120.w, maxHeight: 120.h),
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    begin: Alignment(1, 0),
-                    end: Alignment(0, 1),
-                    colors: [
-                      CustomColors.c0400cf,
-                      CustomColors.ce900eb,
-                    ],
-                  ),
-                  borderRadius: BorderRadius.circular(24),
+              Center(
+                child: Image.asset(
+                  "assets/icons/d_icon.png",
+                  height: 120.h,
+                  width: 120.h,
                 ),
-                child: AspectRatio(
-                  aspectRatio: 1,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'D',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 77.sp,
-                          fontFamily: 'SF Pro',
-                          fontWeight: FontWeight.w800,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              ),
+              SizedBox(
+                height: 9.h,
               ),
               Text.rich(
                 TextSpan(
@@ -103,7 +80,7 @@ class IntroPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SizedBox(
-                height: 10.h,
+                height: 5.h,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -120,12 +97,8 @@ class IntroPage extends StatelessWidget {
               ),
               const Spacer(),
               LoginButton(
-                iconData: Icon(
-                  FontAwesomeIcons.vk,
-                  size: 29.sp,
-                  color: const Color(0xff1976D2),
-                ),
-                name: "Вход через VK",
+                iconData: SvgPicture.asset("assets/icons/telegram_logo.svg"),
+                name: "Вход через Telegram",
                 onPressed: () => enterWithVK(context),
               ),
               SizedBox(

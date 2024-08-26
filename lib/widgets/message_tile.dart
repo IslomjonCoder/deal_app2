@@ -28,6 +28,12 @@ class MessageTile extends StatelessWidget {
       child: Wrap(
         children: [
           Container(
+            constraints: isMessageSingleWithEmoji(message.message)
+                ? BoxConstraints(
+                    minHeight: 65.sp,
+                    minWidth: 65.sp,
+                  )
+                : null,
             padding: EdgeInsets.symmetric(
               horizontal: 14.w,
               vertical: 10.h,
@@ -35,13 +41,15 @@ class MessageTile extends StatelessWidget {
             decoration: ShapeDecoration(
               color: message.mine ? Color(0xFF7DE0FF) : Colors.white,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.r),
+                borderRadius: BorderRadius.circular(
+                    isMessageSingleWithEmoji(message.message) ? 20.r : 40.r),
               ),
             ),
             child: Text(
               message.message,
               softWrap: true,
               overflow: TextOverflow.clip,
+              textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black,
                 fontSize:
