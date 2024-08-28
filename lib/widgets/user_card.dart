@@ -26,9 +26,12 @@ class UserCard extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.h, vertical: 14.h),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                begin: Alignment(0, 0),
-                end: Alignment(0, 1),
-                colors: [Colors.transparent, Color(0xFF76708D)],
+                begin: const FractionalOffset(0.5, 0),
+                end: const FractionalOffset(0.5, 1),
+                colors: [
+                  const Color(0x00131313),
+                  const Color(0xff76718E),
+                ],
               ),
             ),
             child: Column(
@@ -40,7 +43,6 @@ class UserCard extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 23.sp,
-                    fontFamily: 'SF Pro',
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -53,7 +55,6 @@ class UserCard extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 21.sp,
-                    fontFamily: 'SF Pro',
                     fontWeight: FontWeight.w500,
                     height: 1,
                   ),

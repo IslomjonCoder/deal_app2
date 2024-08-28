@@ -8,8 +8,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(428, 927),
+      designSize: const Size(428, 926),
+      fontSizeResolver: FontSizeResolvers.diameter,
       child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           theme: ThemeData(
               fontFamily: "SfPro",
               primaryColor: Colors.white,

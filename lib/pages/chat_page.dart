@@ -14,17 +14,17 @@ class ChatPage extends StatelessWidget {
     return Column(
       children: [
         Padding(
-            padding: EdgeInsets.only(bottom: 5.h, top: 5.h),
+            padding: EdgeInsets.only(top: 2.h),
             child: const AppbarTitle(text: "Чаты")),
         SizedBox(
-          height: 5.h,
+          height: 10.h,
         ),
         Expanded(
           child: Container(
             decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius:
-                    BorderRadius.vertical(top: Radius.circular(20.r))),
+                    BorderRadius.vertical(top: Radius.circular(30.r))),
             child: ListView.builder(
               itemBuilder: (context, index) {
                 return ChatTile(

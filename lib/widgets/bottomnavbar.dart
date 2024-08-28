@@ -139,7 +139,6 @@ class Bottomnavbar extends StatelessWidget {
                             style: TextStyle(
                               color: const Color(0xFFF2F2F7),
                               fontSize: 16.sp,
-                              fontFamily: 'SF Pro',
                               fontWeight: FontWeight.w500,
                               height: 0.06,
                             ),

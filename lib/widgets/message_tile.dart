@@ -36,10 +36,10 @@ class MessageTile extends StatelessWidget {
                 : null,
             padding: EdgeInsets.symmetric(
               horizontal: 14.w,
-              vertical: 10.h,
+              vertical: 9.h,
             ),
             decoration: ShapeDecoration(
-              color: message.mine ? Color(0xFF7DE0FF) : Colors.white,
+              color: message.mine ? const Color(0xFF7DE0FF) : Colors.white,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(
                     isMessageSingleWithEmoji(message.message) ? 20.r : 40.r),
@@ -49,12 +49,11 @@ class MessageTile extends StatelessWidget {
               message.message,
               softWrap: true,
               overflow: TextOverflow.clip,
-              textAlign: TextAlign.center,
+              // textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.black,
                 fontSize:
                     isMessageSingleWithEmoji(message.message) ? 34.sp : 21.sp,
-                fontFamily: 'SF Pro',
                 fontWeight: FontWeight.w400,
               ),
             ),

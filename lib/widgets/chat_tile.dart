@@ -33,9 +33,10 @@ class ChatTile extends StatelessWidget {
             Badge(
               backgroundColor:
                   isOnline ? Color(0xFF0ED221) : Colors.transparent,
-              smallSize: 10.r,
+              smallSize: 11.r,
               alignment: Alignment.topLeft,
               child: CircleAvatar(
+                radius: 26.sp,
                 child: Image.asset(image),
               ),
             ),
@@ -51,7 +52,6 @@ class ChatTile extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 23.sp,
-                    fontFamily: 'SF Pro',
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -63,7 +63,6 @@ class ChatTile extends StatelessWidget {
                       color: Colors.black,
                       overflow: TextOverflow.ellipsis,
                       fontSize: 21.sp,
-                      fontFamily: 'SF Pro',
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -81,19 +80,17 @@ class ChatTile extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.black.withOpacity(0.6),
                     fontSize: 16.sp,
-                    fontFamily: 'SF Pro',
                     fontWeight: FontWeight.w400,
                   ),
                 ),
                 CircleAvatar(
                   backgroundColor: Color(0xFF5D6CF5),
-                  radius: 13.h,
+                  radius: 11.h,
                   child: Text(
                     '1',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 16.sp,
-                      fontFamily: 'SF Pro',
                       fontWeight: FontWeight.w500,
                     ),
                   ),

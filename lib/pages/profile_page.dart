@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../widgets/gender_choose.dart';
 import 'interest_page.dart';
@@ -70,7 +71,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 20.sp,
-                      fontFamily: 'SF Pro',
                       fontWeight: FontWeight.w500,
                       height: 0.05,
                     ),
@@ -91,14 +91,13 @@ class _ProfilePageState extends State<ProfilePage> {
               style: TextStyle(
                 color: Color(0xFFEBEDF0),
                 fontSize: 21.sp,
-                fontFamily: 'SF Pro',
                 height: 0.2,
                 fontWeight: FontWeight.w500,
               ),
             ),
           ),
           SizedBox(
-            height: 18.h,
+            height: 18.sp,
           ),
           const GenderChoose(),
           SizedBox(
@@ -111,7 +110,6 @@ class _ProfilePageState extends State<ProfilePage> {
               style: TextStyle(
                 color: Color(0xFFEBEDF0),
                 fontSize: 21.sp,
-                fontFamily: 'SF Pro',
                 height: 1.1,
                 fontWeight: FontWeight.w500,
               ),
@@ -145,7 +143,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           SizedBox(
-            height: 10.h,
+            height: 20.h,
           ),
           MaterialButton(
             onPressed: () async {
@@ -194,8 +192,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     style: TextStyle(
                       color: Color(0xFFFAFAFA),
                       fontSize: 17.sp,
-                      fontFamily: 'SF Pro',
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.w300,
                       height: 0,
                     ),
                   ),
@@ -209,8 +206,9 @@ class _ProfilePageState extends State<ProfilePage> {
                   // Add your onPressed functionality here
                 },
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(28.80),
+                  borderRadius: BorderRadius.circular(29.r),
                 ),
+                padding: EdgeInsets.symmetric(horizontal: 23.w, vertical: 10.h),
                 color: Colors.white.withOpacity(0.22),
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
@@ -222,7 +220,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 19.sp,
-                    fontFamily: 'SF Pro',
                     fontWeight: FontWeight.w700,
                   ),
                 ),
@@ -232,14 +229,25 @@ class _ProfilePageState extends State<ProfilePage> {
           SizedBox(
             height: 9.h,
           ),
-          Text(
-            '👋🏻 Анастасия',
-            style: TextStyle(
-              color: Color(0xFFFAFAFA),
-              fontSize: 29.sp,
-              fontFamily: 'SF Pro',
-              fontWeight: FontWeight.w300,
-            ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                "assets/icons/emojis/hand.png",
+                height: 29.h,
+              ),
+              SizedBox(
+                width: 5.w,
+              ),
+              Text(
+                'Анастасия',
+                style: TextStyle(
+                  color: Color(0xFFFAFAFA),
+                  fontSize: 29.sp,
+                  fontWeight: FontWeight.w300,
+                ),
+              ),
+            ],
           ),
           SizedBox(
             height: 24.h,

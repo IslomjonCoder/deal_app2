@@ -2,36 +2,142 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../widgets/background_gradient_overlay.dart';
 import '../widgets/message_tile.dart';
 
-const List<Message> messages = [
-  Message(message: "Hello, how are you?", mine: true),
-  Message(message: "I'm doing well, thanks! 😊", mine: false),
-  Message(message: "What about you?", mine: false),
-  Message(message: "Same here, just a bit tired.", mine: true),
-  Message(message: "Let's grab some coffee ☕ later?", mine: false),
-  Message(message: "Sounds like a plan!", mine: true),
-  Message(message: "👍", mine: false),
-  Message(message: "!!!", mine: false),
-  Message(message: "I'm doing well, thanks! 😊", mine: false),
-  Message(message: "What about you?", mine: false),
-  Message(message: "🚀 Ready for the launch?", mine: true),
-  Message(message: "Absolutely, can't wait!", mine: false),
-  Message(message: "🔥🔥🔥", mine: true),
-  Message(message: "Did you finish the report?", mine: false),
-  Message(message: "Not yet, but almost there.", mine: true),
-  Message(message: "Cool, no rush. 💼", mine: false),
-  Message(message: "Thanks for understanding.", mine: true),
-  Message(message: "Hey, are you free tonight?", mine: false),
-  Message(message: "Yes, let's do something fun! 🎉", mine: true),
-  Message(message: "Perfect! 😄", mine: false),
-  Message(message: "🎨", mine: true),
-  Message(message: "🏀", mine: false),
+List<Message> messages = [
   Message(
-      message:
-          "🗓️ See you tomorrowfbdjbhjasghjagsdjhgfjhkadsgjfhkgsdjhakgjfhdgs!",
-      mine: true),
+    message: "Hello, how are you?",
+    mine: true,
+    time: DateTime(2024, 8, 25, 10, 15),
+  ),
+  Message(
+    message: "Hello, how are you?",
+    mine: true,
+    time: DateTime(2024, 8, 25, 10, 17),
+  ),
+  Message(
+    message: "Hello, how are you?",
+    mine: true,
+    time: DateTime(2024, 8, 25, 10, 18),
+  ),
+  Message(
+    message: "Hello, how are you?",
+    mine: true,
+    time: DateTime(2024, 8, 25, 10, 20),
+  ),
+  Message(
+    message: "I'm doing well, thanks! 😊",
+    mine: false,
+    time: DateTime(2024, 8, 25, 10, 22),
+  ),
+  Message(
+    message: "What about you?",
+    mine: false,
+    time: DateTime(2024, 8, 25, 10, 23),
+  ),
+  Message(
+    message: "Same here, just a bit tired.",
+    mine: true,
+    time: DateTime(2024, 8, 25, 10, 25),
+  ),
+  Message(
+    message: "Let's grab some coffee ☕ later?",
+    mine: false,
+    time: DateTime(2024, 8, 25, 10, 30),
+  ),
+  Message(
+    message: "Sounds like a plan!",
+    mine: true,
+    time: DateTime(2024, 8, 25, 10, 35),
+  ),
+  Message(
+    message: "👍",
+    mine: false,
+    time: DateTime(2024, 8, 25, 10, 36),
+  ),
+  Message(
+    message: "!!!",
+    mine: false,
+    time: DateTime(2024, 8, 25, 10, 37),
+  ),
+  Message(
+    message: "I'm doing well, thanks! 😊",
+    mine: false,
+    time: DateTime(2024, 8, 26, 12, 00),
+  ),
+  Message(
+    message: "What about you?",
+    mine: false,
+    time: DateTime(2024, 8, 26, 12, 02),
+  ),
+  Message(
+    message: "🚀 Ready for the launch?",
+    mine: true,
+    time: DateTime(2024, 8, 26, 12, 05),
+  ),
+  Message(
+    message: "Absolutely, can't wait!",
+    mine: false,
+    time: DateTime(2024, 8, 26, 12, 10),
+  ),
+  Message(
+    message: "🔥🔥🔥",
+    mine: true,
+    time: DateTime(2024, 8, 26, 12, 12),
+  ),
+  Message(
+    message: "Did you finish the report?",
+    mine: false,
+    time: DateTime(2024, 8, 27, 14, 20),
+  ),
+  Message(
+    message: "Not yet, but almost there.",
+    mine: true,
+    time: DateTime(2024, 8, 27, 14, 25),
+  ),
+  Message(
+    message: "Cool, no rush. 💼",
+    mine: false,
+    time: DateTime(2024, 8, 27, 14, 30),
+  ),
+  Message(
+    message: "Thanks for understanding.",
+    mine: true,
+    time: DateTime(2024, 8, 27, 14, 35),
+  ),
+  Message(
+    message: "Hey, are you free tonight?",
+    mine: false,
+    time: DateTime(2024, 8, 27, 16, 15),
+  ),
+  Message(
+    message: "Yes, let's do something fun! 🎉",
+    mine: true,
+    time: DateTime(2024, 8, 27, 16, 20),
+  ),
+  Message(
+    message: "Perfect! 😄",
+    mine: false,
+    time: DateTime(2024, 8, 27, 16, 25),
+  ),
+  Message(
+    message: "🎨",
+    mine: true,
+    time: DateTime(2024, 8, 27, 18, 00),
+  ),
+  Message(
+    message: "🏀",
+    mine: false,
+    time: DateTime(2024, 8, 27, 18, 05),
+  ),
+  Message(
+    message:
+        "🗓️ See you tomorrowfbdjbhjasghjagsdjhgfjhkadsgjfhkgsdjhakgjfhdgs!",
+    mine: true,
+    time: DateTime(2024, 8, 28, 09, 00),
+  ),
 ];
 
 class ChatDetail extends StatefulWidget {
@@ -58,7 +164,7 @@ class _ChatDetailState extends State<ChatDetail> {
       extendBody: true,
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(10.h),
+        preferredSize: const Size.fromHeight(0),
         child: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0,
@@ -95,6 +201,31 @@ class _ChatDetailState extends State<ChatDetail> {
                 },
                 itemBuilder: (context, index) {
                   final message = messages[index];
+                  if (index == 0 ||
+                      message.time.day != messages[index - 1].time.day) {
+                    print("I am here");
+                    return Column(
+                      children: [
+                        Text(
+                          '${message.time.day} в ${message.time.hour.toString().padLeft(2, "0")}:${message.time.minute.toString().padLeft(2, "0")}',
+                          textAlign: TextAlign.right,
+                          style: TextStyle(
+                            color: Colors.black.withOpacity(0.6),
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        MessageTile(message: message),
+                        if (messages.length == index + 1)
+                          SizedBox(
+                            height: 70.h,
+                          )
+                      ],
+                    );
+                  }
                   if (messages.length == index + 1) {
                     return Column(
                       mainAxisSize: MainAxisSize.min,
@@ -120,12 +251,6 @@ class _ChatDetailState extends State<ChatDetail> {
                   maxLines: 5,
                   controller: controller,
                   autocorrect: false,
-                  onTap: () {
-                    print(
-                        "I am jumped too ${scrollController.position.maxScrollExtent} ");
-                    scrollController
-                        .jumpTo(scrollController.position.maxScrollExtent);
-                  },
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -141,16 +266,11 @@ class _ChatDetailState extends State<ChatDetail> {
                     ),
                     suffixIcon: IconButton(
                         onPressed: () {},
-                        icon: Icon(
-                          Icons.send,
-                          color: Color(0xFF5D6CF5),
-                          size: 21.sp,
-                        )),
+                        icon: SvgPicture.asset("assets/icons/send.svg")),
                   ),
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 21.sp,
-                    fontFamily: 'SF Pro',
                     fontWeight: FontWeight.w400,
                   ),
                   cursorColor: Color(0xFF007AFF),
@@ -160,7 +280,7 @@ class _ChatDetailState extends State<ChatDetail> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 80.h, horizontal: 16.w),
+              padding: EdgeInsets.symmetric(vertical: 67.h, horizontal: 16.w),
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Container(
@@ -175,7 +295,7 @@ class _ChatDetailState extends State<ChatDetail> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    shadows: [
+                    shadows: const [
                       BoxShadow(
                         color: Color(0x26000000),
                         blurRadius: 20,
@@ -200,7 +320,7 @@ class _ChatDetailState extends State<ChatDetail> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 80.h),
+              padding: EdgeInsets.symmetric(vertical: 67.h),
               child: Align(
                 alignment: Alignment.topCenter,
                 child: Container(
@@ -211,7 +331,7 @@ class _ChatDetailState extends State<ChatDetail> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16.r),
                     ),
-                    shadows: [
+                    shadows: const [
                       BoxShadow(
                         color: Color(0x26000000),
                         blurRadius: 20,
@@ -241,7 +361,6 @@ class _ChatDetailState extends State<ChatDetail> {
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 21.sp,
-                          fontFamily: 'SF Pro',
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -274,6 +393,8 @@ class _ChatDetailState extends State<ChatDetail> {
 class Message {
   final String message;
   final bool mine;
+  final DateTime time;
 
-  const Message({required this.message, required this.mine});
+  const Message(
+      {required this.message, required this.mine, required this.time});
 }

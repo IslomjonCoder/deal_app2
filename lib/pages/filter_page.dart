@@ -30,7 +30,7 @@ class _FilterPageState extends State<FilterPage> {
       body: BackgroundGradientOverlay(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: EdgeInsets.symmetric(horizontal: 16.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -44,7 +44,6 @@ class _FilterPageState extends State<FilterPage> {
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.74),
                       fontSize: 21.sp,
-                      fontFamily: 'SF Pro',
                       fontWeight: FontWeight.w400,
                       height: 0.05,
                     ),
@@ -57,6 +56,8 @@ class _FilterPageState extends State<FilterPage> {
                   child: Wrap(
                     crossAxisAlignment: WrapCrossAlignment.center,
                     alignment: WrapAlignment.center,
+                    runSpacing: 6.sp,
+                    spacing: 15.w,
                     children: [
                       for (var interest in interestList)
                         Builder(builder: (context) {
@@ -95,6 +96,8 @@ class _FilterPageState extends State<FilterPage> {
                 Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
                   alignment: WrapAlignment.center,
+                  runSpacing: 6.sp,
+                  spacing: 6.sp,
                   children: [
                     for (var interest in interestList2)
                       Builder(builder: (context) {

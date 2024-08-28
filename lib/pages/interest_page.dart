@@ -24,6 +24,7 @@ class _InterestPageState extends State<InterestPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         iconTheme: const IconThemeData(color: Colors.white),
+        centerTitle: true,
         title: AppbarTitle(text: 'Мои интересы'),
       ),
       body: BackgroundGradientOverlay(
@@ -43,7 +44,6 @@ class _InterestPageState extends State<InterestPage> {
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.74),
                       fontSize: 21.sp,
-                      fontFamily: 'SF Pro',
                       fontWeight: FontWeight.w400,
                       height: 0.05,
                     ),
@@ -56,6 +56,8 @@ class _InterestPageState extends State<InterestPage> {
                   child: Wrap(
                     crossAxisAlignment: WrapCrossAlignment.center,
                     alignment: WrapAlignment.center,
+                    runSpacing: 6.sp,
+                    spacing: 6.sp,
                     children: [
                       for (var interest in interestList)
                         Builder(builder: (context) {
@@ -94,6 +96,8 @@ class _InterestPageState extends State<InterestPage> {
                 Wrap(
                   crossAxisAlignment: WrapCrossAlignment.center,
                   alignment: WrapAlignment.center,
+                  runSpacing: 6.sp,
+                  spacing: 6.sp,
                   children: [
                     for (var interest in interestList2)
                       Builder(builder: (context) {
@@ -128,33 +132,22 @@ class _InterestPageState extends State<InterestPage> {
                     color: Colors.white,
                     child: SizedBox(
                       width: double.infinity,
-                      child: Text.rich(
-                        TextSpan(
-                          children: [
-                            TextSpan(
-                              text: 'Отправится в ',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 21.sp,
-                                fontWeight: FontWeight.w500,
-                                height: 0.05,
-                              ),
-                            ),
-                            TextSpan(
-                              text: 'DealMeet',
-                              style: TextStyle(
-                                color: const Color(0xB71B1F26),
-                                fontSize: 21.sp,
-                                fontWeight: FontWeight.w500,
-                                height: 0.05,
-                              ),
-                            ),
-                          ],
+                      child: Center(
+                        child: Text(
+                          'Начать поиск',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 21.sp,
+                            fontWeight: FontWeight.w500,
+                            height: 0.05,
+                          ),
                         ),
-                        textAlign: TextAlign.center,
                       ),
                     ),
                   ),
+                ),
+                SizedBox(
+                  height: 16.h,
                 )
               ],
             ),

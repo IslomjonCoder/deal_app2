@@ -18,54 +18,51 @@ class InterestsTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: isAdded ? Colors.white : Colors.transparent,
-            boxShadow: isAdded
-                ? [
-                    BoxShadow(
-                      color: Color(0x26000000),
-                      blurRadius: 20.sp,
-                      offset: const Offset(0, 5),
-                      spreadRadius: 0,
-                    )
-                  ]
-                : null,
-            border: isAdded
-                ? null
-                : Border.all(
-                    width: 1,
-                    color: Colors.black.withOpacity(0.2),
-                  ),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                interest.emoji,
-                style: TextStyle(
-                  color: const Color(0xFFF2F2F7),
-                  fontSize: 21.sp,
-                  fontWeight: FontWeight.w400,
+      child: Container(
+        padding: EdgeInsets.only(top: 4.h, left: 10.w, right: 8.w, bottom: 4.h),
+        decoration: BoxDecoration(
+          color: isAdded ? Colors.white : Colors.transparent,
+          boxShadow: isAdded
+              ? [
+                  BoxShadow(
+                    color: Color(0x26000000),
+                    blurRadius: 20.sp,
+                    offset: Offset(0, 5.h),
+                    spreadRadius: 0,
+                  )
+                ]
+              : null,
+          border: isAdded
+              ? null
+              : Border.all(
+                  width: 1,
+                  color: Colors.black.withOpacity(0.2),
                 ),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              interest.emoji,
+              style: TextStyle(
+                color: const Color(0xFFF2F2F7),
+                fontSize: 21.sp,
+                fontWeight: FontWeight.w400,
               ),
-              SizedBox(
-                width: 7.w,
+            ),
+            SizedBox(
+              width: 7.w,
+            ),
+            Text(
+              interest.word,
+              style: TextStyle(
+                color: isAdded ? Colors.black : const Color(0xFFF2F2F7),
+                fontSize: 21.sp,
+                fontWeight: FontWeight.w400,
               ),
-              Text(
-                interest.word,
-                style: TextStyle(
-                  color: isAdded ? Colors.black : const Color(0xFFF2F2F7),
-                  fontSize: 21.sp,
-                  fontWeight: FontWeight.w400,
-                ),
-              )
-            ],
-          ),
+            )
+          ],
         ),
       ),
     );

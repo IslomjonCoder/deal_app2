@@ -155,7 +155,6 @@ class _SearchPageState extends State<SearchPage> {
                         style: TextStyle(
                           color: const Color(0xFF376062),
                           fontSize: 21.sp,
-                          fontFamily: 'SF Pro',
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -172,6 +171,7 @@ class _SearchPageState extends State<SearchPage> {
               height: 80.h,
             ),
             SwipableCard(user: userList.first),
+            const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -207,7 +207,6 @@ class _SearchPageState extends State<SearchPage> {
                       style: TextStyle(
                         color: const Color(0xFFF2F2F7),
                         fontSize: 21.sp,
-                        fontFamily: 'SF Pro',
                         fontWeight: FontWeight.w500,
                       ),
                     ),
@@ -248,7 +247,6 @@ class _SearchPageState extends State<SearchPage> {
                       style: TextStyle(
                         color: const Color(0xB71B1F26),
                         fontSize: 21.sp,
-                        fontFamily: 'SF Pro',
                         fontWeight: FontWeight.w500,
                         // height: 0.05,
                       ),

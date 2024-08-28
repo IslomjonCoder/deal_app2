@@ -68,79 +68,73 @@ class _SwipableCardState extends State<SwipableCard>
     double rotation = _dragCurrentX / 200;
     double translation = _dragCurrentX;
 
-    return Expanded(
-      child: Stack(
-        children: [
-          GestureDetector(
-            onPanStart: _onPanStart,
-            onPanUpdate: _onPanUpdate,
-            onPanEnd: _onPanEnd,
-            child: Transform.translate(
-              offset: Offset(translation, 0),
-              child: Transform.rotate(
-                angle: rotation * pi / 6,
-                child: UserCard(user: widget.user),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 370.h,
-            right: 10,
-            left: 10,
-            child: GestureDetector(
-              onPanStart: _onPanStart,
-              onPanUpdate: _onPanUpdate,
-              onPanEnd: _onPanEnd,
-              child: Transform.translate(
-                offset: Offset(translation, 0),
-                child: Transform.rotate(
-                  angle: rotation * pi / 6,
+    return GestureDetector(
+      onPanStart: _onPanStart,
+      onPanEnd: _onPanEnd,
+      onPanUpdate: _onPanUpdate,
+      child: Transform.rotate(
+        angle: rotation * pi / 6,
+        child: Transform.translate(
+          offset: Offset(translation, 0),
+          child: SizedBox(
+            height: 482.h,
+            child: Stack(
+              children: [
+                UserCard(user: widget.user),
+                Align(
+                  alignment: Alignment.bottomCenter,
                   child: Container(
-                    width: 323.w,
-                    margin: EdgeInsets.symmetric(horizontal: 14.w),
+                    width: 324.w,
+                    height: 100.h,
+                    // margin: EdgeInsets.symmetric(horizontal: 14.w),
                     decoration: ShapeDecoration(
                       color: const Color(0xFFCBC1F3),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.sp),
                       ),
-                      shadows: const [
+                      shadows: [
                         BoxShadow(
-                          color: Color(0x3F000000),
-                          blurRadius: 23.60,
-                          offset: Offset(4, 4),
+                          color: const Color(0x3F000000),
+                          blurRadius: 23.sp,
+                          offset: const Offset(4, 4),
                           spreadRadius: 0,
                         )
                       ],
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.all(14.sp),
-                      child: Wrap(
-                        spacing: 10.h,
-                        runSpacing: 7.h,
-                        children: [
-                          for (var interest in widget.user.interests)
-                            Text.rich(
-                              TextSpan(children: [
-                                TextSpan(text: interest.emoji),
-                                TextSpan(
-                                    text: interest.word,
-                                    style: TextStyle(fontSize: 17.sp))
-                              ]),
-                              style: TextStyle(
-                                fontSize: 18.sp,
-                                fontFamily: 'SF Pro',
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                        ],
+                    child: Center(
+                      child: Flexible(
+                        child: Padding(
+                          padding: EdgeInsets.all(16.sp),
+                          child: Wrap(
+                            spacing: 7.h,
+                            runSpacing: 7.h,
+                            children: [
+                              for (var interest in widget.user.interests)
+                                Text.rich(
+                                  TextSpan(children: [
+                                    TextSpan(text: interest.emoji),
+                                    TextSpan(
+                                        text: interest.word,
+                                        style: TextStyle(
+                                            fontSize: 17.sp,
+                                            fontWeight: FontWeight.w500))
+                                  ]),
+                                  style: TextStyle(
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
+                )
+              ],
             ),
-          )
-        ],
+          ),
+        ),
       ),
     );
   }
