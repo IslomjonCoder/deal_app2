@@ -5,7 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import '../widgets/background_gradient_overlay.dart';
 import '../widgets/emojis.dart';
 import '../widgets/login_button.dart';
-import 'interest_page.dart';
 import 'main_home_screen.dart';
 
 class IntroPage extends StatelessWidget {
