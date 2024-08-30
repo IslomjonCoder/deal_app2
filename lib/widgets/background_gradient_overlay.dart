@@ -21,11 +21,6 @@ class BackgroundGradientOverlay extends StatelessWidget {
           width: double.infinity,
           decoration: const BoxDecoration(
             gradient: CustomGradients.backgroundGradient,
-            // image: DecorationImage(
-            //     image: AssetImage(
-            //       "assets/images/background_image.png",
-            //     ),
-            //     fit: BoxFit.cover),
           ),
         ),
         BackdropFilter(
