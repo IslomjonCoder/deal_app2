@@ -132,12 +132,6 @@ List<Message> messages = [
     mine: false,
     time: DateTime(2024, 8, 27, 18, 05),
   ),
-  Message(
-    message:
-        "🗓️ See you tomorrowfbdjbhjasghjagsdjhgfjhkadsgjfhkgsdjhakgjfhdgs!",
-    mine: true,
-    time: DateTime(2024, 8, 28, 09, 00),
-  ),
 ];
 
 class ChatDetail extends StatefulWidget {
@@ -157,12 +151,15 @@ class ChatDetail extends StatefulWidget {
 class _ChatDetailState extends State<ChatDetail> {
   final TextEditingController controller = TextEditingController();
   final ScrollController scrollController = ScrollController();
+  bool keyboardAppears = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
       extendBodyBehindAppBar: true,
+      backgroundColor: Colors.transparent,
+      resizeToAvoidBottomInset: false,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(0),
         child: AppBar(
@@ -242,40 +239,45 @@ class _ChatDetailState extends State<ChatDetail> {
                 itemCount: messages.length,
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
+            Positioned(
+              // alignment: Alignment.bottomCenter,
+              bottom: MediaQuery.of(context).viewInsets.bottom,
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 17.h, horizontal: 16.w),
-                child: TextField(
-                  minLines: 1,
-                  maxLines: 5,
-                  controller: controller,
-                  autocorrect: false,
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.white,
-                    contentPadding: const EdgeInsets.only(
-                      top: 11,
-                      left: 16,
-                      right: 12,
-                      bottom: 12,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                      maxWidth: MediaQuery.of(context).size.width - 32.w),
+                  child: TextField(
+                    minLines: 1,
+                    maxLines: 5,
+                    controller: controller,
+                    autocorrect: false,
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white,
+                      contentPadding: const EdgeInsets.only(
+                        top: 11,
+                        left: 16,
+                        right: 12,
+                        bottom: 12,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(30.r),
+                        borderSide: BorderSide.none,
+                      ),
+                      suffixIcon: IconButton(
+                          onPressed: () {},
+                          icon: SvgPicture.asset("assets/icons/send.svg")),
                     ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30.r),
-                      borderSide: BorderSide.none,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 21.sp,
+                      fontWeight: FontWeight.w400,
                     ),
-                    suffixIcon: IconButton(
-                        onPressed: () {},
-                        icon: SvgPicture.asset("assets/icons/send.svg")),
+                    cursorColor: Color(0xFF007AFF),
+                    cursorWidth: 2.w,
+                    cursorHeight: 21.h,
                   ),
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 21.sp,
-                    fontWeight: FontWeight.w400,
-                  ),
-                  cursorColor: Color(0xFF007AFF),
-                  cursorWidth: 2.w,
-                  cursorHeight: 21.h,
                 ),
               ),
             ),

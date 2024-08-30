@@ -21,6 +21,7 @@ class IntroPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      resizeToAvoidBottomInset: true,
       body: BackgroundGradientOverlay(
         child: SafeArea(
           child: SingleChildScrollView(

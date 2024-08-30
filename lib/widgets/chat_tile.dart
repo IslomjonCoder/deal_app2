@@ -37,7 +37,7 @@ class ChatTile extends StatelessWidget {
               alignment: Alignment.topLeft,
               child: CircleAvatar(
                 radius: 26.sp,
-                child: Image.asset(image),
+                backgroundImage: AssetImage(image),
               ),
             ),
             SizedBox(
