@@ -77,16 +77,16 @@ class _SwipableCardState extends State<SwipableCard>
         child: Transform.translate(
           offset: Offset(translation, 0),
           child: SizedBox(
-            height: 482.h,
+            height: 480.h,
             child: Stack(
               children: [
                 UserCard(user: widget.user),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                    width: 324.w,
+                    // width: 324.w,
                     height: 100.h,
-                    // margin: EdgeInsets.symmetric(horizontal: 14.w),
+                    margin: EdgeInsets.symmetric(horizontal: 30.w),
                     decoration: ShapeDecoration(
                       color: const Color(0xFFCBC1F3),
                       shape: RoundedRectangleBorder(
@@ -102,30 +102,32 @@ class _SwipableCardState extends State<SwipableCard>
                       ],
                     ),
                     child: Center(
-                      child: Flexible(
-                        child: Padding(
-                          padding: EdgeInsets.all(16.sp),
-                          child: Wrap(
-                            spacing: 7.h,
-                            runSpacing: 7.h,
-                            children: [
-                              for (var interest in widget.user.interests)
-                                Text.rich(
-                                  TextSpan(children: [
-                                    TextSpan(text: interest.emoji),
-                                    TextSpan(
-                                        text: interest.word,
-                                        style: TextStyle(
-                                            fontSize: 17.sp,
-                                            fontWeight: FontWeight.w500))
-                                  ]),
-                                  style: TextStyle(
-                                    fontSize: 18.sp,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                      child: Padding(
+                        padding: EdgeInsets.all(16.sp),
+                        child: Wrap(
+                          spacing: 8.w,
+                          runSpacing: 8.h,
+                          children: [
+                            for (var interest in widget.user.interests)
+                              Text.rich(
+                                TextSpan(children: [
+                                  TextSpan(
+                                      text: interest.emoji + ' ',
+                                      style: TextStyle(
+                                          fontSize: 18.sp,
+                                          fontWeight: FontWeight.w500)),
+                                  TextSpan(
+                                      text: interest.word,
+                                      style: TextStyle(
+                                          fontSize: 17.5.sp,
+                                          fontWeight: FontWeight.w400))
+                                ]),
+                                style: TextStyle(
+                                  fontSize: 18.sp,
+                                  fontWeight: FontWeight.w500,
                                 ),
-                            ],
-                          ),
+                              ),
+                          ],
                         ),
                       ),
                     ),

@@ -9,11 +9,11 @@ class PlacePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(right: 19.w, left: 19.w),
+      padding: EdgeInsets.only(right: 19.w, left: 19.w, top: 20.h),
       child: ListView.separated(
         separatorBuilder: (context, index) {
           return SizedBox(
-            height: 47.h,
+            height: 27.h,
           );
         },
         itemCount: 20,

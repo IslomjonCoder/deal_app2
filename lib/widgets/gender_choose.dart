@@ -10,6 +10,9 @@ class GenderChoose extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         GenderButton(emoji: "👧", text: "Женский"),
+        SizedBox(
+          width: 10.w,
+        ),
         GenderButton(emoji: "👦", text: 'Мужской'),
       ],
     );
@@ -23,53 +26,52 @@ class GenderButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: BoxConstraints(minWidth: 179.sp, minHeight: 125.sp),
-      // padding: const EdgeInsets.only(
-      //   top: 10,
-      //   left: 16,
-      //   right: 16,
-      //   bottom: 16,
-      // ),
-      decoration: ShapeDecoration(
-        color: Colors.white.withOpacity(0.800000011920929),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
+    return Expanded(
+      child: Container(
+        // width: 179.w,
+        // height: 125.h,
+        padding: EdgeInsets.only(
+          top: 10.h,
+          left: 16.w,
+          right: 16.w,
+          bottom: 16.h,
         ),
-        shadows: [
-          BoxShadow(
-            color: Color(0x26000000),
-            blurRadius: 20,
-            offset: Offset(0, 5),
-            spreadRadius: 0,
-          )
-        ],
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            emoji,
-            style: TextStyle(
-              fontSize: 65.sp,
-              fontWeight: FontWeight.w400,
-            ),
+        decoration: ShapeDecoration(
+          color: Colors.white.withOpacity(0.800000011920929),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
           ),
-          Text(
-            text,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 21.sp,
-              fontWeight: FontWeight.w500,
+          shadows: [
+            BoxShadow(
+              color: Color(0x26000000),
+              blurRadius: 20.r,
+              offset: Offset(0, 5),
+              spreadRadius: 0,
+            )
+          ],
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              emoji,
+              style: TextStyle(
+                  fontSize: 65.sp, fontWeight: FontWeight.w400, height: 0),
             ),
-          ),
-          SizedBox(
-            height: 16.sp,
-          )
-        ],
+            Text(
+              text,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 21.sp,
+                height: 0,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

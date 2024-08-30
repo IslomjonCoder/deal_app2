@@ -37,19 +37,19 @@ class _SearchPageState extends State<SearchPage> {
 
   List<User> userList = [
     User(
-      image: "assets/images/source_avatar.jpeg",
-      name: "Ангелина",
-      age: 24,
-      desc:
-          "Привет 👋🏻 Ищу ребят в маркетинге, готова поделится и дать потенциальных клиентов для вас, если ср",
-      interests: interestList,
-    ),
-    User(
-      image: "assets/images/source_avatar.jpeg",
+      image: "assets/images/avatar.png",
       name: "Максим",
       age: 27,
       desc:
           "Люблю технологии и занимаюсь разработкой. Ищу единомышленников для совместных проектов.",
+      interests: interestList,
+    ),
+    User(
+      image: "assets/images/avatar.png",
+      name: "Ангелина",
+      age: 24,
+      desc:
+          "Привет 👋🏻 Ищу ребят в маркетинге, готова поделится и дать потенциальных клиентов для вас, если ср",
       interests: interestList,
     ),
     User(
@@ -122,6 +122,9 @@ class _SearchPageState extends State<SearchPage> {
       child: SafeArea(
         child: Column(
           children: [
+            SizedBox(
+              height: 14.h,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -145,6 +148,8 @@ class _SearchPageState extends State<SearchPage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(22.r),
                   ),
+                  elevation: 0,
+                  highlightElevation: 0,
                   color: const Color(0xFFEBEDF0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -170,7 +175,7 @@ class _SearchPageState extends State<SearchPage> {
             SizedBox(
               height: 80.h,
             ),
-            SwipableCard(user: userList.first),
+            SwipableCard(user: userList[1]),
             const Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

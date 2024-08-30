@@ -28,7 +28,7 @@ class MeetingCard extends StatelessWidget {
     final hour =
         "${time.hour.toString().padLeft(2, "0")}:${time.minute.toString().padLeft(2, "0")}";
 
-    return '🕤 $hour ${time.day} августа ';
+    return '🕤 $hour ${time.day} августа';
   }
 
   @override
@@ -43,7 +43,7 @@ class MeetingCard extends StatelessWidget {
             decoration: ShapeDecoration(
               image: DecorationImage(
                 image: image,
-                fit: BoxFit.fitHeight,
+                fit: BoxFit.fitWidth,
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
@@ -53,9 +53,9 @@ class MeetingCard extends StatelessWidget {
               ),
             ),
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 9.w),
+              padding: EdgeInsets.symmetric(horizontal: 9.sp),
               child: Align(
-                alignment: const Alignment(0, 0.28),
+                alignment: const Alignment(0, 0.33),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -93,7 +93,7 @@ class MeetingCard extends StatelessWidget {
                       decoration: ShapeDecoration(
                         color: Colors.white,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
+                          borderRadius: BorderRadius.circular(16.r),
                         ),
                         shadows: const [
                           BoxShadow(
@@ -123,7 +123,7 @@ class MeetingCard extends StatelessWidget {
             ),
           ),
           Align(
-            alignment: const Alignment(0, 1.23),
+            alignment: const Alignment(0, 0.95),
             child: Container(
               decoration: BoxDecoration(
                   color: Colors.white,
@@ -145,8 +145,12 @@ class MeetingCard extends StatelessWidget {
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 20.sp,
+                              height: 0,
                               fontWeight: FontWeight.w500,
                             ),
+                          ),
+                          SizedBox(
+                            height: 9.h,
                           ),
                           Text(
                             description,
@@ -154,6 +158,7 @@ class MeetingCard extends StatelessWidget {
                             style: TextStyle(
                               color: const Color(0xFF626262),
                               fontSize: 16.sp,
+                              height: 0,
                               fontWeight: FontWeight.w500,
                             ),
                           ),

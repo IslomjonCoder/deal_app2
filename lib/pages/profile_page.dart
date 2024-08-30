@@ -27,10 +27,13 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Padding(
-      padding: EdgeInsets.symmetric(horizontal: 29.w),
+      padding: EdgeInsets.symmetric(horizontal: 31.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(
+            height: 11.h,
+          ),
           Align(
             alignment: Alignment.topRight,
             child: Container(
@@ -96,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ),
           SizedBox(
-            height: 18.sp,
+            height: 18.h,
           ),
           const GenderChoose(),
           SizedBox(
