@@ -15,8 +15,8 @@ class FilterPage extends StatefulWidget {
 }
 
 class _FilterPageState extends State<FilterPage> {
-  final userInterest = <Interests>[];
-  final userInterest2 = <Interests>[];
+  final userInterest = <Hobby>[];
+  final userInterest2 = <Hobby>[];
 
   @override
   Widget build(BuildContext context) {

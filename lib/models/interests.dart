@@ -1,11 +1,22 @@
 import 'package:equatable/equatable.dart';
 
-class Interests extends Equatable {
+class Hobby extends Equatable {
   final String emoji;
   final String word;
 
-  const Interests({required this.emoji, required this.word});
+  const Hobby({required this.emoji, required this.word});
 
   @override
-  List<Object?> get props => [emoji, word];
+  List<Object?> get props => [
+        emoji,
+        word,
+      ];
+
+  String toJson() {
+    return word;
+  }
+
+  factory Hobby.fromJson(String word) {
+    return Hobby(emoji: '', word: word);
+  }
 }

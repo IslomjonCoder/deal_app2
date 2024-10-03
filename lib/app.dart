@@ -1,5 +1,13 @@
+import 'package:deal_app/bloc/auth_bloc/auth_bloc.dart';
+import 'package:deal_app/bloc/chat_bloc/chat_bloc.dart';
+import 'package:deal_app/bloc/get_users/get_users_bloc.dart';
+import 'package:deal_app/bloc/profile/profile_bloc.dart';
+import 'package:deal_app/models/user.dart';
 import 'package:deal_app/pages/intro_page.dart';
+import 'package:deal_app/pages/main_home_screen.dart';
+import 'package:deal_app/services/local_user_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyApp extends StatelessWidget {
@@ -10,13 +18,35 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(428, 926),
       fontSizeResolver: FontSizeResolvers.diameter,
-      child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(
-              fontFamily: "SfPro",
-              primaryColor: Colors.white,
-              iconTheme: const IconThemeData(color: Colors.white)),
-          home: const IntroPage()),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => AuthBloc()..add(const LoadLocalUser()),
+          ),
+          BlocProvider(
+            create: (context) => GetUsersBloc(),
+          ),
+          BlocProvider(
+            create: (context) => ProfileBloc(),
+          ),
+          BlocProvider(
+            create: (context) => ChatBloc(),
+          )
+        ],
+        child: FutureBuilder<CustomUser?>(
+            future: LocalUserService.getUser(),
+            builder: (context, snapshot) {
+              return MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  theme: ThemeData(
+                      fontFamily: "SfPro",
+                      primaryColor: Colors.white,
+                      iconTheme: const IconThemeData(color: Colors.white)),
+                  home: snapshot.data == null
+                      ? const IntroPage()
+                      : const MainHomeScreen());
+            }),
+      ),
     );
   }
 }

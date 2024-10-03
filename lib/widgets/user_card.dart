@@ -101,7 +101,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../models/user.dart';
 
 class UserCard extends StatelessWidget {
-  final User user;
+  final CustomUser user;
 
   const UserCard({super.key, required this.user});
 
@@ -117,15 +117,15 @@ class UserCard extends StatelessWidget {
         // clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-              user.image,
+            image: NetworkImage(
+              user.avatar ?? "",
             ),
             // scale: 0.1,
             fit: BoxFit.fitWidth,
           ),
           boxShadow: [
             BoxShadow(
-              color: Color(0x14000000),
+              color: const Color(0x14000000),
               blurRadius: 4.47,
               offset: Offset(0, 1.sp),
               spreadRadius: 0,
@@ -140,11 +140,11 @@ class UserCard extends StatelessWidget {
               position: DecorationPosition.background,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  begin: const Alignment(0, -1),
-                  end: const Alignment(0, 1),
+                  begin: Alignment(0, -1),
+                  end: Alignment(0, 1),
                   colors: [
-                    const Color(0x00131313),
-                    const Color(0xff76718E),
+                    Color(0x00131313),
+                    Color(0xff76718E),
                   ],
                 ),
               ),
@@ -154,7 +154,7 @@ class UserCard extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      '${user.name}, ${user.age} года',
+                      '${user.firstname}, ${user.age} года',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,
@@ -166,7 +166,7 @@ class UserCard extends StatelessWidget {
                       height: 20.h,
                     ),
                     Text(
-                      user.desc,
+                      user.about ?? "",
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.white,

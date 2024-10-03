@@ -1,4 +1,4 @@
-package com.example.deal_app
+package com.example.dealMeet
 
 import io.flutter.embedding.android.FlutterActivity
 

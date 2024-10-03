@@ -6,7 +6,7 @@ import '../models/interests.dart';
 class InterestsTab extends StatelessWidget {
   final VoidCallback onTap;
   final bool isAdded;
-  final Interests interest;
+  final Hobby interest;
 
   const InterestsTab(
       {super.key,

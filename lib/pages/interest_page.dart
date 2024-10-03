@@ -1,6 +1,9 @@
+import 'package:deal_app/bloc/profile/profile_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../bloc/auth_bloc/auth_bloc.dart';
 import '../models/interests.dart';
 import '../widgets/background_gradient_overlay.dart';
 import '../widgets/interests_tab.dart';
@@ -14,8 +17,8 @@ class InterestPage extends StatefulWidget {
 }
 
 class _InterestPageState extends State<InterestPage> {
-  final userInterest = <Interests>[];
-  final userInterest2 = <Interests>[];
+  final userInterest = <Hobby>[];
+  final userInterest2 = <Hobby>[];
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,7 @@ class _InterestPageState extends State<InterestPage> {
         backgroundColor: Colors.transparent,
         iconTheme: const IconThemeData(color: Colors.white),
         centerTitle: true,
-        title: AppbarTitle(text: 'Мои интересы'),
+        title: const AppbarTitle(text: 'Мои интересы'),
       ),
       body: BackgroundGradientOverlay(
         child: SafeArea(
@@ -121,7 +124,13 @@ class _InterestPageState extends State<InterestPage> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
                   child: MaterialButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      final id = context.read<ProfileBloc>().state.user!.id;
+                      context.read<ProfileBloc>().add(
+                          UpdateHobby(userInterest + userInterest2, id: id));
+
+                      Navigator.pop(context);
+                    },
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     elevation: 0,
@@ -158,20 +167,20 @@ class _InterestPageState extends State<InterestPage> {
   }
 }
 
-List<Interests> interestList = [
-  const Interests(emoji: '💻', word: 'Технологии'),
-  const Interests(emoji: '📺', word: 'Маркетинг'),
-  const Interests(emoji: '🎨', word: 'Искусство'),
-  const Interests(emoji: '💰', word: 'Финансы'),
-  const Interests(emoji: '❤️', word: 'Здравоохранение'),
-  const Interests(emoji: '⚡', word: 'Энергетика'),
-  const Interests(emoji: '🌱', word: 'Э-commerce'),
-  const Interests(emoji: '📚', word: 'Образование'),
+List<Hobby> interestList = [
+  const Hobby(emoji: '💻', word: 'Технологии'),
+  const Hobby(emoji: '📺', word: 'Маркетинг'),
+  const Hobby(emoji: '🎨', word: 'Искусство'),
+  const Hobby(emoji: '💰', word: 'Финансы'),
+  const Hobby(emoji: '❤️', word: 'Здравоохранение'),
+  const Hobby(emoji: '⚡', word: 'Энергетика'),
+  const Hobby(emoji: '🌱', word: 'Э-commerce'),
+  const Hobby(emoji: '📚', word: 'Образование'),
 ];
 
-List<Interests> interestList2 = [
-  const Interests(emoji: '✨', word: 'Фриланс'),
-  const Interests(emoji: '⭐', word: 'Стартапы'),
-  const Interests(emoji: '🌟', word: 'Бизнесы'),
-  const Interests(emoji: '🔥', word: 'Крупный бизнес'),
+List<Hobby> interestList2 = [
+  const Hobby(emoji: '✨', word: 'Фриланс'),
+  const Hobby(emoji: '⭐', word: 'Стартапы'),
+  const Hobby(emoji: '🌟', word: 'Бизнесы'),
+  const Hobby(emoji: '🔥', word: 'Крупный бизнес'),
 ];

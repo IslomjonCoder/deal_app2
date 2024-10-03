@@ -1,5 +1,8 @@
 import 'dart:math';
+import 'package:deal_app/bloc/chat_bloc/chat_bloc.dart';
+import 'package:deal_app/models/chat.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../widgets/chat_tile.dart';
@@ -25,26 +28,32 @@ class ChatPage extends StatelessWidget {
                 color: Colors.white,
                 borderRadius:
                     BorderRadius.vertical(top: Radius.circular(30.r))),
-            child: ListView.builder(
-              itemBuilder: (context, index) {
-                return ChatTile(
-                  isOnline: Random().nextBool(),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              const ChatDetail(name: 'Георгий', age: 24),
-                        ));
+            child: BlocBuilder<ChatBloc, ChatState>(
+              builder: (context, state) {
+                final chats = state.chats;
+                return ListView.builder(
+                  itemBuilder: (context, index) {
+                    final chat = chats[index];
+                    return ChatTile(
+                      isOnline: Random().nextBool(),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  ChatDetail(name: chat.title, age: 24),
+                            ));
+                      },
+                      image: chat.avatar,
+                      message: chat.lastMessage,
+                      name: chat.title,
+                      unreadMessages: 1,
+                      time: DateTime.now().toString(),
+                    );
                   },
-                  image: "assets/images/avatar.png",
-                  message: 'Пока изучаю вопрос, ожидайте',
-                  name: 'Георгий',
-                  unreadMessages: 1,
-                  time: 'Сейчас',
+                  itemCount: chats.length,
                 );
               },
-              itemCount: 10,
             ),
           ),
         ),

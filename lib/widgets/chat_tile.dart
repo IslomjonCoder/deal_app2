@@ -32,12 +32,12 @@ class ChatTile extends StatelessWidget {
           children: [
             Badge(
               backgroundColor:
-                  isOnline ? Color(0xFF0ED221) : Colors.transparent,
+                  isOnline ? const Color(0xFF0ED221) : Colors.transparent,
               smallSize: 11.r,
               alignment: Alignment.topLeft,
               child: CircleAvatar(
                 radius: 26.sp,
-                backgroundImage: AssetImage(image),
+                backgroundImage: NetworkImage(image),
               ),
             ),
             SizedBox(
@@ -69,7 +69,7 @@ class ChatTile extends StatelessWidget {
                 )
               ],
             ),
-            Spacer(),
+            const Spacer(),
             Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.end,
@@ -84,7 +84,7 @@ class ChatTile extends StatelessWidget {
                   ),
                 ),
                 CircleAvatar(
-                  backgroundColor: Color(0xFF5D6CF5),
+                  backgroundColor: const Color(0xFF5D6CF5),
                   radius: 11.h,
                   child: Text(
                     '1',

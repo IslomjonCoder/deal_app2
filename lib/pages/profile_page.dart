@@ -1,4 +1,7 @@
+import 'package:deal_app/bloc/auth_bloc/auth_bloc.dart';
+import 'package:deal_app/bloc/profile/profile_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../widgets/gender_choose.dart';
@@ -21,6 +24,26 @@ class _ProfilePageState extends State<ProfilePage> {
         MaterialPageRoute(
           builder: (context) => const InterestPage(),
         ));
+  }
+
+  void initListeners(BuildContext context) {
+    context.read<ProfileBloc>().stream.listen(
+      (event) {
+        if (event is UpdateBirthDateSuccess) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('День рождения обновлен ${event.user?.born}'),
+            ),
+          );
+        }
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initListeners(context);
   }
 
   @override
@@ -91,7 +114,7 @@ class _ProfilePageState extends State<ProfilePage> {
               'Какой пол?',
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Color(0xFFEBEDF0),
+                color: const Color(0xFFEBEDF0),
                 fontSize: 21.sp,
                 height: 0.2,
                 fontWeight: FontWeight.w500,
@@ -110,7 +133,7 @@ class _ProfilePageState extends State<ProfilePage> {
               'Теперь уточним интересы \nи дату рождения',
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Color(0xFFEBEDF0),
+                color: const Color(0xFFEBEDF0),
                 fontSize: 21.sp,
                 height: 1.1,
                 fontWeight: FontWeight.w500,
@@ -154,6 +177,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   firstDate: DateTime(1900),
                   lastDate: DateTime(2023));
               birthDay = await result;
+              final user = context.read<ProfileBloc>().state.user;
+              context.read<ProfileBloc>().add(UpdateBirthDate(
+                  "${birthDay!.year}-${birthDay!.month.toString().padLeft(2, "0")}-${birthDay!.day.toString().padLeft(2, "0")}",
+                  user!));
               setState(() {});
             },
             splashColor: Colors.transparent,
@@ -166,16 +193,20 @@ class _ProfilePageState extends State<ProfilePage> {
             child: SizedBox(
               width: double.infinity,
               child: Center(
-                child: Text(
-                  birthDay == null
-                      ? 'Choose birthday'
-                      : "${birthDay!.day.toString().padLeft(2, "0")}.${birthDay!.month.toString().padLeft(2, "0")}.${birthDay!.year}",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 21.sp,
-                    fontWeight: FontWeight.w500,
-                    height: 0.05,
-                  ),
+                child: BlocBuilder<ProfileBloc, ProfileState>(
+                  builder: (context, state) {
+                    return Text(
+                      state.user?.born == null
+                          ? 'Choose birthday'
+                          : state.user!.born,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 21.sp,
+                        fontWeight: FontWeight.w500,
+                        height: 0.05,
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
@@ -186,18 +217,31 @@ class _ProfilePageState extends State<ProfilePage> {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Flexible(
-                child: SizedBox(
-                  width: 275.w,
-                  child: Text(
-                    'Напиши здесь три тезиса о себе и ИИ поможет сделать остальное',
-                    style: TextStyle(
-                      color: Color(0xFFFAFAFA),
-                      fontSize: 17.sp,
-                      fontWeight: FontWeight.w300,
-                      height: 0,
-                    ),
-                  ),
+              // Flexible(
+              //   child: SizedBox(
+              //     width: 275.w,
+              //     child: Text(
+              //       'Напиши здесь три тезиса о себе и ИИ поможет сделать остальное',
+              //       style: TextStyle(
+              //         color: const Color(0xFFFAFAFA),
+              //         fontSize: 17.sp,
+              //         fontWeight: FontWeight.w300,
+              //         height: 0,
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.white.withOpacity(0.22),
+                      hintStyle: TextStyle(
+                        color: const Color(0xFFFAFAFA),
+                        fontSize: 17.sp,
+                        fontWeight: FontWeight.w300,
+                        height: 0,
+                      )),
                 ),
               ),
               SizedBox(
@@ -241,13 +285,17 @@ class _ProfilePageState extends State<ProfilePage> {
               SizedBox(
                 width: 5.w,
               ),
-              Text(
-                'Анастасия',
-                style: TextStyle(
-                  color: Color(0xFFFAFAFA),
-                  fontSize: 29.sp,
-                  fontWeight: FontWeight.w300,
-                ),
+              BlocBuilder<AuthBloc, AuthState>(
+                builder: (context, state) {
+                  return Text(
+                    state.user?.firstname ?? "",
+                    style: TextStyle(
+                      color: const Color(0xFFFAFAFA),
+                      fontSize: 29.sp,
+                      fontWeight: FontWeight.w300,
+                    ),
+                  );
+                },
               ),
             ],
           ),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "405649942605",
+    "project_id": "dealmeet-c7ba3",
+    "storage_bucket": "dealmeet-c7ba3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:405649942605:android:53e453cb24e0a4451c1404",
+        "android_client_info": {
+          "package_name": "com.example.dealMeet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuPwcIR66-Zq5zv_D_UeBCIV6A46LZqx0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

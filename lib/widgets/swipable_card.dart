@@ -7,9 +7,14 @@ import '../models/user.dart';
 import 'user_card.dart';
 
 class SwipableCard extends StatefulWidget {
-  final User user;
+  final CustomUser user;
+  final VoidCallback onDragEnd;
 
-  const SwipableCard({super.key, required this.user});
+  const SwipableCard({
+    super.key,
+    required this.user,
+    required this.onDragEnd,
+  });
 
   @override
   _SwipableCardState createState() => _SwipableCardState();
@@ -50,6 +55,7 @@ class _SwipableCardState extends State<SwipableCard>
     if (_dragCurrentX.abs() > 100) {
       _controller.forward().then((_) => _resetCard());
     } else {
+      widget.onDragEnd();
       setState(() {
         _dragCurrentX = 0.0;
       });
@@ -67,6 +73,7 @@ class _SwipableCardState extends State<SwipableCard>
   Widget build(BuildContext context) {
     double rotation = _dragCurrentX / 200;
     double translation = _dragCurrentX;
+    print(widget.user.hobby);
 
     return GestureDetector(
       onPanStart: _onPanStart,
@@ -76,65 +83,63 @@ class _SwipableCardState extends State<SwipableCard>
         angle: rotation * pi / 6,
         child: Transform.translate(
           offset: Offset(translation, 0),
-          child: SizedBox(
-            height: 480.h,
-            child: Stack(
-              children: [
-                UserCard(user: widget.user),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Container(
-                    // width: 324.w,
-                    height: 100.h,
-                    margin: EdgeInsets.symmetric(horizontal: 30.w),
-                    decoration: ShapeDecoration(
-                      color: const Color(0xFFCBC1F3),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.sp),
-                      ),
-                      shadows: [
-                        BoxShadow(
-                          color: const Color(0x3F000000),
-                          blurRadius: 23.sp,
-                          offset: const Offset(4, 4),
-                          spreadRadius: 0,
-                        )
-                      ],
+          child: Stack(
+            alignment: Alignment.topCenter,
+            children: [
+              UserCard(user: widget.user),
+              Padding(
+                padding: const EdgeInsets.only(top: 340),
+                child: Container(
+                  width: 324.w,
+                  // height: 100.h,
+                  margin: EdgeInsets.symmetric(horizontal: 30.w),
+                  decoration: ShapeDecoration(
+                    color: const Color(0xFFCBC1F3),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.sp),
                     ),
-                    child: Center(
-                      child: Padding(
-                        padding: EdgeInsets.all(16.sp),
-                        child: Wrap(
-                          spacing: 8.w,
-                          runSpacing: 8.h,
-                          children: [
-                            for (var interest in widget.user.interests)
-                              Text.rich(
-                                TextSpan(children: [
-                                  TextSpan(
-                                      text: interest.emoji + ' ',
-                                      style: TextStyle(
-                                          fontSize: 18.sp,
-                                          fontWeight: FontWeight.w500)),
-                                  TextSpan(
-                                      text: interest.word,
-                                      style: TextStyle(
-                                          fontSize: 17.5.sp,
-                                          fontWeight: FontWeight.w400))
-                                ]),
-                                style: TextStyle(
-                                  fontSize: 18.sp,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                    shadows: [
+                      BoxShadow(
+                        color: const Color(0x3F000000),
+                        blurRadius: 23.sp,
+                        offset: const Offset(4, 4),
+                        spreadRadius: 0,
+                      )
+                    ],
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(16.sp),
+                      child: Wrap(
+                        spacing: 8.w,
+                        runSpacing: 8.h,
+                        children: [
+                          for (var interest in widget.user.hobby ?? [])
+                            Text.rich(
+                              TextSpan(children: [
+                                TextSpan(
+                                    text: interest.emoji + ' ',
+                                    style: TextStyle(
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.w500)),
+                                TextSpan(
+                                    text: interest.word,
+                                    style: TextStyle(
+                                        fontSize: 17.5.sp,
+                                        fontWeight: FontWeight.w400))
+                              ]),
+                              style: TextStyle(
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w500,
                               ),
-                          ],
-                        ),
+                            ),
+                        ],
                       ),
                     ),
                   ),
-                )
-              ],
-            ),
+                ),
+              )
+            ],
           ),
         ),
       ),

@@ -1,4 +1,7 @@
+import 'package:deal_app/bloc/auth_bloc/auth_bloc.dart';
+import 'package:deal_app/bloc/profile/profile_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../tab_manager.dart';
 import '../widgets/background_gradient_overlay.dart';
@@ -23,6 +26,10 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   @override
   void initState() {
     super.initState();
+
+    final user = context.read<AuthBloc>().state.user;
+    print("UserId:${user!.id}");
+    context.read<ProfileBloc>().add(GetMe(user.id));
   }
 
   @override
@@ -44,12 +51,12 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                           valueListenable: TabManager.selectedIndex,
                           builder: (context, value, child) {
                             if (value == 3) {
-                              return ChatPage();
+                              return const ChatPage();
                             }
                             return PageView(
                               controller: controller,
                               physics: const NeverScrollableScrollPhysics(),
-                              children: [
+                              children: const [
                                 PlacePage(),
                                 SearchPage(),
                                 ProfilePage(),
