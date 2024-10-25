@@ -28,6 +28,10 @@ class GetMeSuccess extends ProfileState {
   const GetMeSuccess({required super.user});
 }
 
+class LogOutSuccess extends ProfileState {
+  const LogOutSuccess() : super();
+}
+
 class UpdateHobbySuccess extends ProfileState {
   const UpdateHobbySuccess({required super.user});
 }

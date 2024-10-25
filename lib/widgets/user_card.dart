@@ -135,9 +135,10 @@ class UserCard extends StatelessWidget {
         child: Center(
           child: Align(
             alignment: Alignment.bottomCenter,
-            child: DecoratedBox(
+            child: Container(
               // clipBehavior: Clip.antiAlias,
-              position: DecorationPosition.background,
+              // position: DecorationPosition.background,
+              width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment(0, -1),

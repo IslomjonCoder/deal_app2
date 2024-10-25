@@ -55,3 +55,14 @@ class AddUserOnChat extends ProfileEvent {
   final CustomUser user;
   AddUserOnChat(this.userId, this.user);
 }
+
+class FetchUser extends ProfileEvent {
+  final String id;
+  const FetchUser({
+    required this.id,
+  });
+}
+
+class LogOut extends ProfileEvent {
+  const LogOut();
+}

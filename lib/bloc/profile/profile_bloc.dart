@@ -15,6 +15,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<UpdateAvatar>((event, emit) {
       // TODO: implement event handler
     });
+    on<LogOut>(logOut);
     on<GetMe>(getMe);
     on<UpdateStatus>((event, emit) {
       // TODO: implement event handler
@@ -105,5 +106,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       message: result.message,
       user: state.user,
     ));
+  }
+
+  Future<void> logOut(LogOut event, Emitter<ProfileState> emitter) async {
+    emitter(ProfileLoading(user: state.user));
+    LocalUserService.deleteUser();
+    emitter(const LogOutSuccess());
   }
 }

@@ -61,6 +61,7 @@ class CustomUser extends Equatable {
       "lastName": lastName,
       "age": age,
       "born": born,
+      "hobby": [],
       "gender": gender,
       "online": isOnline ?? false,
       "userChatIgnore": userChatIgnore,

@@ -41,6 +41,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           return Scaffold(
             extendBodyBehindAppBar: true,
             extendBody: value == 3,
+            // resizeToAvoidBottomInset: false,
             backgroundColor: Colors.transparent,
             body: SafeArea(
                 bottom: false,
