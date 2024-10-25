@@ -16,7 +16,6 @@ class ProfileService {
       final user = CustomUser.fromJson(jsonDecode(response.body));
       return DataSuccess<CustomUser>(data: user, message: "User fetch success");
     }
-    print(response.body);
 
     return DataFailure(message: "Something got wrong ${response.body}");
   }
@@ -29,7 +28,7 @@ class ProfileService {
       return DataSuccess<List<CustomUser>>(
           data: users, message: "Users fetch success");
     }
-    print(response.body);
+
     return DataFailure(message: "Something got wrong ${response.body}");
   }
 
@@ -50,7 +49,7 @@ class ProfileService {
   }
 
   Future<DataSource> updateHobby(List<Hobby> hobbies, String id) async {
-    final response = await http.put(
+    final response = await http.post(
       Uri.http(Apis.baseUrl, Apis.updateHobbyUser, <String, String>{
         "id": id,
       }),
@@ -90,43 +89,48 @@ class ProfileService {
     List<String>? userChatIgnore,
     bool? online,
   }) async {
-    final headers = {"accept": "*/*", "Content-Type": "application/json"};
-    final data = user
-        .copyWith(
-          avatar: avatar,
-          firstname: firstName,
-          lastName: lastName,
-          age: age,
-          userChats: usersChat,
-          userChatIgnore: userChatIgnore,
-          born: born,
-          gender: gender,
-          patronymic: patronymic,
-          about: about,
-          hobby: hobby,
-          isOnline: online,
-        )
-        .toJson();
+    final data = jsonEncode(
+      user
+          .copyWith(
+            avatar: avatar,
+            firstname: firstName,
+            lastName: lastName,
+            age: age,
+            userChats: usersChat,
+            userChatIgnore: userChatIgnore,
+            born: born,
+            gender: gender,
+            patronymic: patronymic,
+            about: about,
+            hobby: hobby,
+            isOnline: online,
+          )
+          .toJson(),
+    );
     print("Data: $data  $id");
-    final response = await http.put(
-        headers: headers,
-        Uri.parse('http://5.35.81.3:8080/User/update-user?id=$id'),
-        body: jsonEncode(data));
+    final response = await Dio(BaseOptions(
+      validateStatus: (status) => true,
+    )).post('http://5.35.81.3:8080/User/update-user',
+        queryParameters: {'id': id},
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'accept': '*/*',
+          },
+        ),
+        data: data);
 
-    print(jsonEncode(data));
-    print(response.statusCode);
     // Handle the response
     if (response.statusCode == 200) {
-      print("User update success");
-      final user = CustomUser.fromJson(jsonDecode(response.body));
+      final user = CustomUser.fromJson(response.data);
       return DataSuccess<CustomUser>(
         data: user,
         message: "User update success",
       );
     } else {
-      print(response.body);
+      print(response.data);
       return DataFailure(
-        message: "Something got wrong ${response.body}",
+        message: "Something got wrong ${response.data}",
       );
     }
   }

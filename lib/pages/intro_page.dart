@@ -14,8 +14,6 @@ class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
 
   void enterWithGoogle(BuildContext context) async {
-    // Navigator.push(context,
-    //     MaterialPageRoute(builder: (context) => const MainHomeScreen()));
     context.read<AuthBloc>().add(const SignInWithGoogle());
   }
 

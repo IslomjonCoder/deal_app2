@@ -62,6 +62,26 @@ class EventService {
     return DataFailure(message: "Something got wrong ${response.body}");
   }
 
+  Future<DataSource> getEvents() async {
+    final response = await http.get(
+      Uri.parse('http://5.35.81.3:8080/Event/get-events'),
+      headers: {
+        'accept': '*/*',
+      },
+    );
+    if (response.statusCode == 200) {
+      final List<dynamic> eventsJson = json.decode(response.body);
+      final List<Event> events =
+          eventsJson.map((el) => Event.fromJson(el)).toList();
+
+      return DataSuccess<List<Event>>(
+        data: events,
+        message: "Event fetch success",
+      );
+    }
+    return DataFailure(message: "Something got wrong ${response.body}");
+  }
+
 /*************  ✨ Codeium Command ⭐  *************/
 
   Future<DataSource> editEvent({

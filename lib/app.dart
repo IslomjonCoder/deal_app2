@@ -1,5 +1,7 @@
 import 'package:deal_app/bloc/auth_bloc/auth_bloc.dart';
 import 'package:deal_app/bloc/chat_bloc/chat_bloc.dart';
+import 'package:deal_app/bloc/event_bloc/event_bloc.dart';
+import 'package:deal_app/bloc/event_bloc/event_event.dart';
 import 'package:deal_app/bloc/get_users/get_users_bloc.dart';
 import 'package:deal_app/bloc/profile/profile_bloc.dart';
 import 'package:deal_app/models/user.dart';
@@ -31,20 +33,25 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) => ChatBloc(),
+          ),
+          BlocProvider(
+            create: (context) => EventBloc()..add(const GetEventsEvent()),
           )
         ],
         child: FutureBuilder<CustomUser?>(
             future: LocalUserService.getUser(),
             builder: (context, snapshot) {
+              print(snapshot.data);
               return MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  theme: ThemeData(
-                      fontFamily: "SfPro",
-                      primaryColor: Colors.white,
-                      iconTheme: const IconThemeData(color: Colors.white)),
-                  home: snapshot.data == null
-                      ? const IntroPage()
-                      : const MainHomeScreen());
+                debugShowCheckedModeBanner: false,
+                theme: ThemeData(
+                    fontFamily: "SfPro",
+                    primaryColor: Colors.white,
+                    iconTheme: const IconThemeData(color: Colors.white)),
+                home: snapshot.data == null
+                    ? const IntroPage()
+                    : const MainHomeScreen(),
+              );
             }),
       ),
     );

@@ -19,20 +19,8 @@ class GenderChoose extends StatelessWidget {
             context.read<ProfileBloc>().add(UpdateGender("female", id));
 
             ScaffoldMessenger.of(context).showSnackBar(
-              snackBarAnimationStyle:
-                  AnimationStyle(duration: const Duration(microseconds: 20)),
-              SnackBar(
-                width: 230.w,
-                behavior: SnackBarBehavior.floating,
-                shape: const StadiumBorder(),
-                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 3),
-                backgroundColor: Colors.white,
-                content: Center(
-                  child: Text(
-                    'Пол изменён на женский',
-                    style: TextStyle(color: Colors.black, fontSize: 14.sp),
-                  ),
-                ),
+              const SnackBar(
+                content: Text('female'),
               ),
             );
           },
@@ -47,21 +35,8 @@ class GenderChoose extends StatelessWidget {
             final id = context.read<ProfileBloc>().state.user!.id;
             context.read<ProfileBloc>().add(UpdateGender("male", id));
             ScaffoldMessenger.of(context).showSnackBar(
-              snackBarAnimationStyle: AnimationStyle(
-                  duration: const Duration(microseconds: 20),
-                  reverseDuration: const Duration(microseconds: 10)),
-              SnackBar(
-                width: 230.w,
-                behavior: SnackBarBehavior.floating,
-                shape: const StadiumBorder(),
-                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 3),
-                backgroundColor: Colors.white,
-                content: Center(
-                  child: Text(
-                    'Пол изменён на мужской',
-                    style: TextStyle(color: Colors.black, fontSize: 14.sp),
-                  ),
-                ),
+              const SnackBar(
+                content: Text('Мужской'),
               ),
             );
           },

@@ -24,12 +24,16 @@ class UpdateBirthDateSuccess extends ProfileState {
   const UpdateBirthDateSuccess({required super.user});
 }
 
-class GetMeSuccess extends ProfileState {
-  const GetMeSuccess({required super.user});
+class UpdateAvatarSuccess extends ProfileState {
+  const UpdateAvatarSuccess({required super.user});
 }
 
-class LogOutSuccess extends ProfileState {
-  const LogOutSuccess() : super();
+class UpdateStatusSuccess extends ProfileState {
+  const UpdateStatusSuccess({required super.user});
+}
+
+class GetMeSuccess extends ProfileState {
+  const GetMeSuccess({required super.user});
 }
 
 class UpdateHobbySuccess extends ProfileState {

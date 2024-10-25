@@ -1,5 +1,6 @@
 import 'package:deal_app/bloc/auth_bloc/auth_bloc.dart';
 import 'package:deal_app/bloc/profile/profile_bloc.dart';
+import 'package:deal_app/services/local_user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,7 +42,6 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
           return Scaffold(
             extendBodyBehindAppBar: true,
             extendBody: value == 3,
-            // resizeToAvoidBottomInset: false,
             backgroundColor: Colors.transparent,
             body: SafeArea(
                 bottom: false,

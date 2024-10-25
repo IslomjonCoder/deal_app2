@@ -12,18 +12,33 @@ part 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc() : super(const ProfileInitial()) {
-    on<UpdateAvatar>((event, emit) {
-      // TODO: implement event handler
-    });
-    on<LogOut>(logOut);
+    on<UpdateAvatar>(updateAvatar);
+    on<UpdateStatus>(updateStatus);
     on<GetMe>(getMe);
-    on<UpdateStatus>((event, emit) {
-      // TODO: implement event handler
-    });
     on<UpdateHobby>(updateHobby);
     on<UpdateGender>(updateGender);
     on<UpdateBirthDate>(updateBirthDate);
     on<AddUserOnChat>(addChat);
+  }
+
+  Future<void> updateStatus(
+      UpdateStatus event, Emitter<ProfileState> emitter) async {
+    final result = await ProfileService().updateStatus(event.id, event.online);
+
+    if (result is DataSuccess<CustomUser>) {
+      emitter(UpdateStatusSuccess(user: result.data));
+    }
+    emitter(ProfileError(user: state.user, message: result.message));
+  }
+
+  Future<void> updateAvatar(
+      UpdateAvatar event, Emitter<ProfileState> emitter) async {
+    final result =
+        await ProfileService().updateAvatarUser(event.id, event.avatar);
+    if (result is DataSuccess<CustomUser>) {
+      emitter(UpdateAvatarSuccess(user: result.data));
+    }
+    emitter(ProfileError(user: state.user, message: result.message));
   }
 
   Future<void> getMe(GetMe event, Emitter<ProfileState> emitter) async {
@@ -106,11 +121,5 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       message: result.message,
       user: state.user,
     ));
-  }
-
-  Future<void> logOut(LogOut event, Emitter<ProfileState> emitter) async {
-    emitter(ProfileLoading(user: state.user));
-    LocalUserService.deleteUser();
-    emitter(const LogOutSuccess());
   }
 }

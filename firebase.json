@@ -1,1 +1,41 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"dealmeet-c7ba3","appId":"1:405649942605:android:53e453cb24e0a4451c1404","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"dealmeet-c7ba3","appId":"1:405649942605:ios:9f86ae924136d2731c1404","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"macos":{"default":{"projectId":"dealmeet-c7ba3","appId":"1:405649942605:ios:9f86ae924136d2731c1404","uploadDebugSymbols":false,"fileOutput":"macos/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"dealmeet-c7ba3","configurations":{"android":"1:405649942605:android:53e453cb24e0a4451c1404","ios":"1:405649942605:ios:9f86ae924136d2731c1404","macos":"1:405649942605:ios:9f86ae924136d2731c1404","web":"1:405649942605:web:c96f18bf590e1d911c1404","windows":"1:405649942605:web:e9833b24fdf4575f1c1404"}}}}}}
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "dealmeet-c7ba3",
+                    "appId": "1:405649942605:android:53e453cb24e0a4451c1404",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "ios": {
+                "default": {
+                    "projectId": "dealmeet-c7ba3",
+                    "appId": "1:405649942605:ios:9f86ae924136d2731c1404",
+                    "uploadDebugSymbols": false,
+                    "fileOutput": "ios/Runner/GoogleService-Info.plist"
+                }
+            },
+            "macos": {
+                "default": {
+                    "projectId": "dealmeet-c7ba3",
+                    "appId": "1:405649942605:ios:9f86ae924136d2731c1404",
+                    "uploadDebugSymbols": false,
+                    "fileOutput": "macos/Runner/GoogleService-Info.plist"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "dealmeet-c7ba3",
+                    "configurations": {
+                        "android": "1:405649942605:android:53e453cb24e0a4451c1404",
+                        "ios": "1:405649942605:ios:9f86ae924136d2731c1404",
+                        "macos": "1:405649942605:ios:9f86ae924136d2731c1404",
+                        "web": "1:405649942605:web:c96f18bf590e1d911c1404",
+                        "windows": "1:405649942605:web:e9833b24fdf4575f1c1404"
+                    }
+                }
+            }
+        }
+    }
+}

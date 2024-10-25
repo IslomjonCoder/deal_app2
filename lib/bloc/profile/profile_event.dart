@@ -36,13 +36,15 @@ class UpdateBirthDate extends ProfileEvent {
 // }
 
 class UpdateStatus extends ProfileEvent {
+  final String id;
   final bool online;
-  UpdateStatus(this.online);
+  UpdateStatus(this.online, this.id);
 }
 
 class UpdateAvatar extends ProfileEvent {
+  final String id;
   final String avatar;
-  UpdateAvatar(this.avatar);
+  UpdateAvatar(this.avatar, this.id);
 }
 
 // class AddUserChat extends ProfileEvent {
@@ -54,15 +56,4 @@ class AddUserOnChat extends ProfileEvent {
   final String userId;
   final CustomUser user;
   AddUserOnChat(this.userId, this.user);
-}
-
-class FetchUser extends ProfileEvent {
-  final String id;
-  const FetchUser({
-    required this.id,
-  });
-}
-
-class LogOut extends ProfileEvent {
-  const LogOut();
 }

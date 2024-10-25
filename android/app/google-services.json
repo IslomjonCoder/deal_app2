@@ -12,7 +12,20 @@
           "package_name": "com.example.dealMeet"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "405649942605-ed7miqtqig7ufjgiu8gcepbjijkgbuu4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dealMeet",
+            "certificate_hash": "7dc1835df59dfcafd4ec7d3ae3fefb0d9d6327a0"
+          }
+        },
+        {
+          "client_id": "405649942605-q7tkjngq0gvt8cm0j74gimgb33k2epfm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCuPwcIR66-Zq5zv_D_UeBCIV6A46LZqx0"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "405649942605-q7tkjngq0gvt8cm0j74gimgb33k2epfm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "405649942605-o036lb7j5fsgfrtaiq53742j5j00odi0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.dealApp"
+              }
+            }
+          ]
         }
       }
     }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../bloc/auth_bloc/auth_bloc.dart';
 import '../models/interests.dart';
 import '../widgets/background_gradient_overlay.dart';
 import '../widgets/interests_tab.dart';
@@ -125,10 +126,8 @@ class _InterestPageState extends State<InterestPage> {
                   child: MaterialButton(
                     onPressed: () {
                       final id = context.read<ProfileBloc>().state.user!.id;
-                      if (userInterest.isNotEmpty || userInterest2.isNotEmpty) {
-                        context.read<ProfileBloc>().add(
-                            UpdateHobby(userInterest + userInterest2, id: id));
-                      }
+                      context.read<ProfileBloc>().add(
+                          UpdateHobby(userInterest + userInterest2, id: id));
 
                       Navigator.pop(context);
                     },

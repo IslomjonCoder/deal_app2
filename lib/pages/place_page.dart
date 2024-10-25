@@ -1,4 +1,10 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
+import 'package:deal_app/bloc/event_bloc/event_bloc.dart';
+import 'package:deal_app/bloc/event_bloc/event_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../widgets/meeting_card.dart';
@@ -10,34 +16,63 @@ class PlacePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(right: 19.w, left: 19.w, top: 20.h),
-      child: ListView.separated(
-        separatorBuilder: (context, index) {
-          return SizedBox(
-            height: 27.h,
-          );
-        },
-        itemCount: 20,
-        itemBuilder: (context, index) {
-          return Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              MeetingCard(
-                time: DateTime(2024, 10, 20, 13, 40),
-                price: '10000 ₽',
-                description:
-                    'Оценочное собеседование или как работает коммерческий профайлинг',
-                title: 'Бизнес завтрак в ресторане Van Gogh',
-                address: "Казань, улица Шафмата, дом 2",
-                image: const AssetImage("assets/images/event.png"),
-              ),
-              if (index == 19)
-                SizedBox(
-                  height: 47.h,
-                ),
-            ],
-          );
-        },
-      ),
+      child: BlocBuilder(
+          bloc: context.read<EventBloc>(),
+          builder: (context, state) {
+            if (state is EventLoadedState) {
+              return ListView.separated(
+                separatorBuilder: (context, index) {
+                  return SizedBox(
+                    height: 27.h,
+                  );
+                },
+                itemCount: state.events.length,
+                itemBuilder: (context, index) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      MeetingCard(
+                        time: DateTime(2024, 10, 20, 13, 40),
+                        price: '${state.events[index].cost} ₽',
+                        description: state.events[index].about,
+                        title: state.events[index].title,
+                        address: state.events[index].address,
+                        image: const AssetImage('assets/images/event.png'),
+                        // image: _decodeBase64Image(
+                        //   state.events[index].image,
+                        // ),
+                      ),
+                      if (index == 19)
+                        SizedBox(
+                          height: 47.h,
+                        ),
+                    ],
+                  );
+                },
+              );
+            } else if (state is EventNotLoadedState) {
+              return Center(
+                child: Text(state.msg),
+              );
+            } else if (state is EventInitialState) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is EventLoadingState) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return const Center(
+                child: Text('Unexpected Error'),
+              );
+            }
+          }),
     );
+  }
+
+  ImageProvider _decodeBase64Image(String base64String) {
+    Uint8List bytes = base64Decode(base64String);
+    return MemoryImage(bytes);
   }
 }

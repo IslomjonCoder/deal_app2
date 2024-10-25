@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:deal_app/config/datasource.dart';
 import 'package:deal_app/models/user.dart';
 import 'package:deal_app/services/local_user_service.dart';
-import 'package:deal_app/services/profile_service.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../services/auth_service.dart';
@@ -40,7 +40,7 @@ class AuthBloc extends Bloc<AuthServiceEvents, AuthState> {
       "",
       "1000-01-01",
       [],
-      avatar ?? "",
+      '',
       [],
       [],
       false,
@@ -73,6 +73,7 @@ class AuthBloc extends Bloc<AuthServiceEvents, AuthState> {
   ) async {
     try {
       await _authService.deleteUser(event.id);
+      await LocalUserService.deleteUser();
       // emit(state.copyWith(user: null));
     } on FirebaseAuthException catch (e) {
       // emit(state.copyWith(error: e.message));
@@ -83,6 +84,7 @@ class AuthBloc extends Bloc<AuthServiceEvents, AuthState> {
     LoadLocalUser event,
     Emitter<AuthState> emit,
   ) async {
+    await LocalUserService.deleteUser();
     final user = await LocalUserService.getUser();
     if (user == null) return;
 

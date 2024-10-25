@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../bloc/auth_bloc/auth_bloc.dart';
 import '../models/interests.dart';
 import '../models/user.dart';
 import '../tab_manager.dart';
@@ -55,16 +56,16 @@ class _SearchPageState extends State<SearchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: RefreshIndicator(
-        onRefresh: () async {
-          final user = context.read<ProfileBloc>().state.user;
-          context.read<GetUsersBloc>().add(UsersFetch(id: user?.id ?? ""));
-          print("I am here");
-        },
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 23.w),
-          child: ListView(
+    return RefreshIndicator(
+      onRefresh: () async {
+        final user = context.read<ProfileBloc>().state.user;
+        context.read<GetUsersBloc>().add(UsersFetch(id: user?.id ?? ""));
+        print("I am here");
+      },
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 23.w),
+        child: SafeArea(
+          child: Column(
             children: [
               SizedBox(
                 height: 14.h,
@@ -140,9 +141,7 @@ class _SearchPageState extends State<SearchPage> {
                   );
                 },
               ),
-              SizedBox(
-                height: 20.h,
-              ),
+              const Spacer(),
               BlocBuilder<GetUsersBloc, GetUsersState>(
                 builder: (context, state) {
                   final userList = state.users;

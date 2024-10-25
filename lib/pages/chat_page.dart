@@ -1,6 +1,6 @@
 import 'dart:math';
-
 import 'package:deal_app/bloc/chat_bloc/chat_bloc.dart';
+import 'package:deal_app/models/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

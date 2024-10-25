@@ -36,12 +36,7 @@ class AuthService {
     final String? lastName =
         await _getLastName(googleSignInAuthentication?.accessToken);
     print(currentUser);
-    return (
-      currentUser?.displayName,
-      lastName,
-      currentUser?.email,
-      currentUser?.photoURL
-    );
+    return (currentUser?.displayName, lastName, currentUser?.email, '');
   }
 
   Future<String?> _getLastName(String? accessToken) async {

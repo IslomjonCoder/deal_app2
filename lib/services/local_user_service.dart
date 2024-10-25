@@ -1,8 +1,6 @@
 import 'dart:convert';
 
-import 'package:deal_app/config/datasource.dart';
 import 'package:deal_app/models/user.dart';
-import 'package:deal_app/services/profile_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LocalUserService {
@@ -18,9 +16,7 @@ class LocalUserService {
     final prefs = await SharedPreferences.getInstance();
     final json = prefs.getString(_key);
     if (json == null) return null;
-    final user = CustomUser.fromSql(jsonDecode(json));
-    final login = await ProfileService().getMe(user.id);
-    return login is DataSuccess ? user : null;
+    return CustomUser.fromSql(jsonDecode(json));
   }
 
   static Future<void> deleteUser() async {

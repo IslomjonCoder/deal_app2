@@ -87,59 +87,58 @@ class _SwipableCardState extends State<SwipableCard>
             alignment: Alignment.topCenter,
             children: [
               UserCard(user: widget.user),
-              if (widget.user.hobby?.isNotEmpty == true)
-                Padding(
-                  padding: const EdgeInsets.only(top: 340),
-                  child: Container(
-                    width: 324.w,
-                    // height: 100.h,
-                    margin: EdgeInsets.symmetric(horizontal: 30.w),
-                    decoration: ShapeDecoration(
-                      color: const Color(0xFFCBC1F3),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20.sp),
-                      ),
-                      shadows: [
-                        BoxShadow(
-                          color: const Color(0x3F000000),
-                          blurRadius: 23.sp,
-                          offset: const Offset(4, 4),
-                          spreadRadius: 0,
-                        )
-                      ],
+              Padding(
+                padding: const EdgeInsets.only(top: 340),
+                child: Container(
+                  width: 324.w,
+                  // height: 100.h,
+                  margin: EdgeInsets.symmetric(horizontal: 30.w),
+                  decoration: ShapeDecoration(
+                    color: const Color(0xFFCBC1F3),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.sp),
                     ),
-                    child: Center(
-                      child: Padding(
-                        padding: EdgeInsets.all(16.sp),
-                        child: Wrap(
-                          spacing: 8.w,
-                          runSpacing: 8.h,
-                          children: [
-                            for (var interest in widget.user.hobby ?? [])
-                              Text.rich(
-                                TextSpan(children: [
-                                  TextSpan(
-                                      text: interest.emoji + ' ',
-                                      style: TextStyle(
-                                          fontSize: 18.sp,
-                                          fontWeight: FontWeight.w500)),
-                                  TextSpan(
-                                      text: interest.word,
-                                      style: TextStyle(
-                                          fontSize: 17.5.sp,
-                                          fontWeight: FontWeight.w400))
-                                ]),
-                                style: TextStyle(
-                                  fontSize: 18.sp,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                    shadows: [
+                      BoxShadow(
+                        color: const Color(0x3F000000),
+                        blurRadius: 23.sp,
+                        offset: const Offset(4, 4),
+                        spreadRadius: 0,
+                      )
+                    ],
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(16.sp),
+                      child: Wrap(
+                        spacing: 8.w,
+                        runSpacing: 8.h,
+                        children: [
+                          for (var interest in widget.user.hobby ?? [])
+                            Text.rich(
+                              TextSpan(children: [
+                                TextSpan(
+                                    text: interest.emoji + ' ',
+                                    style: TextStyle(
+                                        fontSize: 18.sp,
+                                        fontWeight: FontWeight.w500)),
+                                TextSpan(
+                                    text: interest.word,
+                                    style: TextStyle(
+                                        fontSize: 17.5.sp,
+                                        fontWeight: FontWeight.w400))
+                              ]),
+                              style: TextStyle(
+                                fontSize: 18.sp,
+                                fontWeight: FontWeight.w500,
                               ),
-                          ],
-                        ),
+                            ),
+                        ],
                       ),
                     ),
                   ),
-                )
+                ),
+              )
             ],
           ),
         ),
