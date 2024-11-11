@@ -101,7 +101,7 @@ class _ProfilePageState extends State<ProfilePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              avatarWidget(user!),
+              if (user != null) avatarWidget(user),
               Align(
                 alignment: Alignment.topRight,
                 child: Container(
@@ -118,9 +118,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ],
                   ),
                   child: MaterialButton(
-                    onPressed: () {
-                      context.read<AuthBloc>().add(const SignOutGoogle());
-                    },
+                    onPressed: () => context.read<AuthBloc>().add(const SignOutGoogle()),
                     padding: const EdgeInsets.only(top: 5, left: 5, bottom: 5),
                     highlightElevation: 0,
                     highlightColor: Colors.transparent,

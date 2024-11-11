@@ -13,9 +13,7 @@ import '../widgets/login_button.dart';
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
 
-  void enterWithGoogle(BuildContext context) async {
-    context.read<AuthBloc>().add(const SignInWithGoogle());
-  }
+  void enterWithGoogle(BuildContext context) async => context.read<AuthBloc>().add(const SignInWithGoogle());
 
   void enterWithVK(BuildContext context) {}
 
@@ -33,9 +31,7 @@ class IntroPage extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   EmojiLayout(),
-                  SizedBox(
-                    height: 10.h,
-                  ),
+                  SizedBox(height: 10.h),
                   Center(
                     child: Image.asset(
                       "assets/icons/d_icon.png",
@@ -43,9 +39,7 @@ class IntroPage extends StatelessWidget {
                       width: 120.h,
                     ),
                   ),
-                  SizedBox(
-                    height: 9.h,
-                  ),
+                  SizedBox(height: 9.h),
                   Text.rich(
                     TextSpan(
                       style: TextStyle(height: 0.95.sp),
@@ -82,26 +76,21 @@ class IntroPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
-                    height: 8.h,
+                    height: 8.h
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 30),
                     child: Text(
                       'Встречайте людей по своим интересам, находите бизнес завтраки и другие различные мероприятия',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 21.sp,
-                          fontWeight: FontWeight.w400,
-                          height: 1.2),
+                      style: TextStyle(color: Colors.black, fontSize: 21.sp, fontWeight: FontWeight.w400, height: 1.2),
                     ),
                   ),
                   Container(
-                    constraints: BoxConstraints(maxHeight: 54.h),
+                    constraints: BoxConstraints(maxHeight: 54.h)
                   ),
                   LoginButton(
-                    iconData:
-                        SvgPicture.asset("assets/icons/telegram_logo.svg"),
+                    iconData: SvgPicture.asset("assets/icons/telegram_logo.svg"),
                     name: "Вход через Telegram",
                     onPressed: () => enterWithVK(context),
                   ),
@@ -119,14 +108,13 @@ class IntroPage extends StatelessWidget {
                       }
                     },
                     child: LoginButton(
-                      iconData:
-                          SvgPicture.asset("assets/icons/google_icon.svg"),
+                      iconData: SvgPicture.asset("assets/icons/google_icon.svg"),
                       name: "Вход через Google",
                       onPressed: () => enterWithGoogle(context),
                     ),
                   ),
                   SizedBox(
-                    height: 20.h,
+                    height: 20.h
                   ),
                 ],
               ),

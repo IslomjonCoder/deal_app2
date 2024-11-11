@@ -66,9 +66,7 @@ class AuthService {
     return response.statusCode == 200;
   }
 
-  void signOutGoogle() async {
-    await googleSignIn.signOut();
-  }
+  void signOutGoogle() async => await googleSignIn.signOut();
 
   Future<DataSource> registerUser(
       String firstName,

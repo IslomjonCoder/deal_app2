@@ -8,6 +8,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../services/auth_service.dart';
 
 part 'auth_event.dart';
+
 part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthServiceEvents, AuthState> {
@@ -25,8 +26,7 @@ class AuthBloc extends Bloc<AuthServiceEvents, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     emit(AuthLoadingState(user: state.user));
-    var (displayName, lastName, email, avatar) =
-        await _authService.signInWithGoogle();
+    var (displayName, lastName, email, avatar) = await _authService.signInWithGoogle();
 
     if ((displayName?.split(" ").length ?? 0) > 1 && lastName == null) {
       lastName = displayName?.split(" ")[1];
@@ -61,6 +61,7 @@ class AuthBloc extends Bloc<AuthServiceEvents, AuthState> {
   ) async {
     try {
       _authService.signOutGoogle();
+      FirebaseAuth.instance.signOut();
       // emit(state.copyWith(user: null));
     } on FirebaseAuthException catch (e) {
       // emit(state.copyWith(error: e.message));

@@ -21,18 +21,14 @@ class PlacePage extends StatelessWidget {
           builder: (context, state) {
             if (state is EventLoadedState) {
               return ListView.separated(
-                separatorBuilder: (context, index) {
-                  return SizedBox(
-                    height: 27.h,
-                  );
-                },
+                separatorBuilder: (context, index) => SizedBox(height: 27.h),
                 itemCount: state.events.length,
                 itemBuilder: (context, index) {
                   return Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       MeetingCard(
-                        time: DateTime(2024, 10, 20, 13, 40),
+                        time: state.events[index].date,
                         price: '${state.events[index].cost} ₽',
                         description: state.events[index].about,
                         title: state.events[index].title,
@@ -42,10 +38,7 @@ class PlacePage extends StatelessWidget {
                         //   state.events[index].image,
                         // ),
                       ),
-                      if (index == 19)
-                        SizedBox(
-                          height: 47.h,
-                        ),
+                      if (index == 19) SizedBox(height: 47.h),
                     ],
                   );
                 },

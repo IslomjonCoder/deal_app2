@@ -29,8 +29,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
     super.initState();
 
     final user = context.read<AuthBloc>().state.user;
-    print("UserId:${user!.id}");
-    context.read<ProfileBloc>().add(GetMe(user.id));
+    context.read<ProfileBloc>().add(GetMe(user?.id ?? ""));
   }
 
   @override
@@ -68,9 +67,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
                     ),
                   ],
                 )),
-            bottomNavigationBar: Bottomnavbar(
-              controller: controller,
-            ),
+            bottomNavigationBar: Bottomnavbar(controller: controller),
           );
         },
       ),

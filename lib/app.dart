@@ -8,6 +8,7 @@ import 'package:deal_app/models/user.dart';
 import 'package:deal_app/pages/intro_page.dart';
 import 'package:deal_app/pages/main_home_screen.dart';
 import 'package:deal_app/services/local_user_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,35 +23,26 @@ class MyApp extends StatelessWidget {
       fontSizeResolver: FontSizeResolvers.diameter,
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(
-            create: (context) => AuthBloc()..add(const LoadLocalUser()),
-          ),
-          BlocProvider(
-            create: (context) => GetUsersBloc(),
-          ),
-          BlocProvider(
-            create: (context) => ProfileBloc(),
-          ),
-          BlocProvider(
-            create: (context) => ChatBloc(),
-          ),
-          BlocProvider(
-            create: (context) => EventBloc()..add(const GetEventsEvent()),
-          )
+          BlocProvider(create: (context) => AuthBloc()..add(const LoadLocalUser())),
+          BlocProvider(create: (context) => GetUsersBloc()),
+          BlocProvider(create: (context) => ProfileBloc()),
+          BlocProvider(create: (context) => ChatBloc()),
+          BlocProvider(create: (context) => EventBloc()..add(const GetEventsEvent()))
         ],
         child: FutureBuilder<CustomUser?>(
             future: LocalUserService.getUser(),
             builder: (context, snapshot) {
               print(snapshot.data);
-              return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                theme: ThemeData(
-                    fontFamily: "SfPro",
-                    primaryColor: Colors.white,
-                    iconTheme: const IconThemeData(color: Colors.white)),
-                home: snapshot.data == null
-                    ? const IntroPage()
-                    : const MainHomeScreen(),
+              return StreamBuilder<User?>(
+                stream: FirebaseAuth.instance.userChanges(),
+                builder: (context, snapshot) {
+                  return MaterialApp(
+                    debugShowCheckedModeBanner: false,
+                    theme: ThemeData(
+                        fontFamily: "SfPro", primaryColor: Colors.white, iconTheme: const IconThemeData(color: Colors.white)),
+                    home: snapshot.data == null ? const IntroPage() : const MainHomeScreen(),
+                  );
+                }
               );
             }),
       ),
