@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:deal_app/config/datasource.dart';
 import 'package:deal_app/models/user.dart';
@@ -21,10 +23,7 @@ class AuthBloc extends Bloc<AuthServiceEvents, AuthState> {
     on<LoadLocalUser>(_loadLocalUser);
   }
 
-  Future<void> _signInWithGoogle(
-    SignInWithGoogle event,
-    Emitter<AuthState> emit,
-  ) async {
+  Future<void> _signInWithGoogle(SignInWithGoogle event, Emitter<AuthState> emit) async {
     emit(AuthLoadingState(user: state.user));
     var (displayName, lastName, email, avatar) = await _authService.signInWithGoogle();
 
@@ -52,7 +51,7 @@ class AuthBloc extends Bloc<AuthServiceEvents, AuthState> {
     }
     await LocalUserService.saveUser((datasource as DataSuccess).data);
 
-    emit(SignInWithGoogleSuccess(user: (datasource).data));
+    emit(SignInWithGoogleSuccess((datasource).data!));
   }
 
   Future<void> _signOutGoogle(
@@ -81,14 +80,12 @@ class AuthBloc extends Bloc<AuthServiceEvents, AuthState> {
     }
   }
 
-  Future<void> _loadLocalUser(
-    LoadLocalUser event,
-    Emitter<AuthState> emit,
-  ) async {
-    await LocalUserService.deleteUser();
+  Future<void> _loadLocalUser(LoadLocalUser event, Emitter<AuthState> emit) async {
+    // await LocalUserService.deleteUser();
     final user = await LocalUserService.getUser();
+    log(user.toString(), name: "_loadLocalUser");
     if (user == null) return;
 
-    emit(SignInWithGoogleSuccess(user: user));
+    emit(SignInWithGoogleSuccess(user));
   }
 }

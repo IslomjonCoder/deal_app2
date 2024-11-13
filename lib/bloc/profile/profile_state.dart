@@ -47,6 +47,11 @@ class ProfileError extends ProfileState {
     required super.user,
     required this.message,
   });
+
+  @override
+  String toString() {
+    return 'ProfileError{message: $message}';
+  }
 }
 
 class AddUserChatSuccess extends ProfileState {

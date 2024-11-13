@@ -1,22 +1,23 @@
+import 'package:deal_app/bloc/navigation_cubit/navigation_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../tab_manager.dart';
 
 class Bottomnavbar extends StatelessWidget {
-  final PageController controller;
+  // final PageController controller;
 
-  const Bottomnavbar({super.key, required this.controller});
+  const Bottomnavbar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<int>(
-        valueListenable: TabManager.selectedIndex,
-        builder: (context, value, child) {
+    return BlocBuilder<NavigationCubit,int>(
+        builder: (context, state) {
           return Container(
-            height: value == 3 ? 100.h : null,
-            decoration: value == 3
+            height: state == 3 ? 100.h : null,
+            decoration: state == 3
                 ? ShapeDecoration(
                     gradient: const LinearGradient(
                       begin: Alignment(-0.9, -0.44),
@@ -45,16 +46,14 @@ class Bottomnavbar extends StatelessWidget {
                   Container(
                     constraints: BoxConstraints(minWidth: 70.w),
                     child: GestureDetector(
-                      onTap: () {
-                        TabManager.changeTab(0);
-                        controller.jumpToPage(0);
-                      },
+                      behavior:  HitTestBehavior.translucent,
+                      onTap: () => context.read<NavigationCubit>().changeIndex(0),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           SizedBox(
                               height: 40.h,
-                              child: value == 0
+                              child: state == 0
                                   ? CircleAvatar(
                                       backgroundColor: Colors.white,
                                       child: SvgPicture.asset(
@@ -82,9 +81,11 @@ class Bottomnavbar extends StatelessWidget {
                   Container(
                     constraints: BoxConstraints(minWidth: 70.w),
                     child: GestureDetector(
+                      behavior:  HitTestBehavior.translucent,
+
                       onTap: () {
-                        TabManager.changeTab(1);
-                        controller.jumpToPage(1);
+                        context.read<NavigationCubit>().changeIndex(1);
+                        // controller.jumpToPage(1);
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -115,16 +116,18 @@ class Bottomnavbar extends StatelessWidget {
                   Container(
                     constraints: BoxConstraints(minWidth: 70.w),
                     child: GestureDetector(
+                      behavior:  HitTestBehavior.translucent,
+
                       onTap: () {
-                        TabManager.changeTab(2);
-                        controller.jumpToPage(2);
+                        context.read<NavigationCubit>().changeIndex(2);
+                        // controller.jumpToPage(2);
                       },
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           SizedBox(
                               height: 40.h,
-                              child: value >= 2
+                              child: state >= 2
                                   ? const CircleAvatar(
                                       backgroundColor: Colors.white,
                                       child: Icon(Icons.person),

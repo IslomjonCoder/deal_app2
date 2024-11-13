@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:deal_app/config/apis.dart';
 import 'package:deal_app/config/datasource.dart';
@@ -16,17 +17,15 @@ class ProfileService {
       final user = CustomUser.fromJson(jsonDecode(response.body));
       return DataSuccess<CustomUser>(data: user, message: "User fetch success");
     }
-
+  log(response.statusCode.toString(), name: "ProfileService getMe status code");
     return DataFailure(message: "Something got wrong ${response.body}");
   }
 
   Future<DataSource> getAllUsers() async {
     final response = await http.get(Uri.http(Apis.baseUrl, Apis.getAllUser));
     if (response.statusCode == 200) {
-      final users = List<CustomUser>.from(
-          jsonDecode(response.body).map((x) => CustomUser.fromJson(x)));
-      return DataSuccess<List<CustomUser>>(
-          data: users, message: "Users fetch success");
+      final users = List<CustomUser>.from(jsonDecode(response.body).map((x) => CustomUser.fromJson(x)));
+      return DataSuccess<List<CustomUser>>(data: users, message: "Users fetch success");
     }
 
     return DataFailure(message: "Something got wrong ${response.body}");
@@ -34,15 +33,12 @@ class ProfileService {
 
   Future<DataSource> updateUserGender(String id, String gender) async {
     final response = await http.post(
-      Uri.parse(
-          "http://5.35.81.3:8080/User/update-gender-user?id=$id&gender=$gender"),
+      Uri.parse("http://5.35.81.3:8080/User/update-gender-user?id=$id&gender=$gender"),
     );
     print(response.body);
     if (response.statusCode == 200) {
       print("Update user gender success");
-      return DataSuccess<CustomUser>(
-          data: CustomUser.fromJson(jsonDecode(response.body)),
-          message: "User update success");
+      return DataSuccess<CustomUser>(data: CustomUser.fromJson(jsonDecode(response.body)), message: "User update success");
     }
 
     return DataFailure(message: "Something got wrong ${response.body}");
@@ -66,9 +62,7 @@ class ProfileService {
     print(response.body);
     print(response.statusCode);
     if (response.statusCode == 200) {
-      return DataSuccess<CustomUser>(
-          data: CustomUser.fromJson(jsonDecode(response.body)),
-          message: "User update success");
+      return DataSuccess<CustomUser>(data: CustomUser.fromJson(jsonDecode(response.body)), message: "User update success");
     }
     return DataFailure(message: "Something got wrong ${response.body}");
   }
@@ -110,7 +104,7 @@ class ProfileService {
     print("Data: $data  $id");
     final response = await Dio(BaseOptions(
       validateStatus: (status) => true,
-    )).post('http://5.35.81.3:8080/User/update-user',
+    )).put('http://5.35.81.3:8080/User/update-user',
         queryParameters: {'id': id},
         options: Options(
           headers: {
@@ -119,7 +113,8 @@ class ProfileService {
           },
         ),
         data: data);
-
+log(response.data.toString(), name: "updateUser response data");
+log(response.statusCode.toString(), name: "updateUser response status code");
     // Handle the response
     if (response.statusCode == 200) {
       final user = CustomUser.fromJson(response.data);
@@ -165,8 +160,7 @@ class ProfileService {
   Future<DataSource> updateDateBorn(CustomUser user, String born) async {
     final datetime = DateTime.parse(born);
     final age = DateTime.now().difference(datetime).inDays ~/ 365;
-    final result =
-        await updateUser(user.id, user: user, born: born, age: age.abs());
+    final result = await updateUser(user.id, user: user, born: born, age: age.abs());
     if (result is DataSuccess<CustomUser>) {
       return result;
     }
@@ -175,8 +169,7 @@ class ProfileService {
 
   Future<DataSource> updateAvatarUser(String id, String avatar) async {
     final response = await http.post(
-      Uri.parse(
-          'http://5.35.81.3:8080/User/update-avatar-user?id=$id&avatar=$avatar'),
+      Uri.parse('http://5.35.81.3:8080/User/update-avatar-user?id=$id&avatar=$avatar'),
       headers: {
         'accept': '*/*',
       },
@@ -198,7 +191,7 @@ class ProfileService {
       user: user,
       usersChat: {...(user.userChats ?? <String>[]), chatId}.toList(),
     );
-    print(result.message);
+    log(result.message, name: "updateUserChat");
     if (result is DataSuccess<CustomUser>) {
       return result;
     }

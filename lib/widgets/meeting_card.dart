@@ -38,17 +38,12 @@ class MeetingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(24.r)),
-      clipBehavior: Clip.antiAlias,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-
-        children: [
-          imageHeader(),
-          contentWidget(context),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        imageHeader(),
+        contentWidget(context),
+      ],
     );
   }
 
@@ -228,7 +223,7 @@ class MeetingCard extends StatelessWidget {
 
   Widget contentWidget(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(color: Colors.white),
+      decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.vertical(bottom: Radius.circular(24))),
       child: Padding(
         padding: EdgeInsets.only(left: 14.w, right: 14.w, top: 10.h, bottom: 8.h),
         child: Row(

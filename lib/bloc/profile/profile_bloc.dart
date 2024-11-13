@@ -8,6 +8,7 @@ import '../../config/datasource.dart';
 import '../../services/profile_service.dart';
 
 part 'profile_event.dart';
+
 part 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
@@ -21,8 +22,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<AddUserOnChat>(addChat);
   }
 
-  Future<void> updateStatus(
-      UpdateStatus event, Emitter<ProfileState> emitter) async {
+  Future<void> updateStatus(UpdateStatus event, Emitter<ProfileState> emitter) async {
     final result = await ProfileService().updateStatus(event.id, event.online);
 
     if (result is DataSuccess<CustomUser>) {
@@ -31,10 +31,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     emitter(ProfileError(user: state.user, message: result.message));
   }
 
-  Future<void> updateAvatar(
-      UpdateAvatar event, Emitter<ProfileState> emitter) async {
-    final result =
-        await ProfileService().updateAvatarUser(event.id, event.avatar);
+  Future<void> updateAvatar(UpdateAvatar event, Emitter<ProfileState> emitter) async {
+    final result = await ProfileService().updateAvatarUser(event.id, event.avatar);
     if (result is DataSuccess<CustomUser>) {
       emitter(UpdateAvatarSuccess(user: result.data));
     }
@@ -52,8 +50,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     ));
   }
 
-  Future<void> updateGender(
-      UpdateGender event, Emitter<ProfileState> emitter) async {
+  Future<void> updateGender(UpdateGender event, Emitter<ProfileState> emitter) async {
     final result = await ProfileService().updateUserGender(
       event.id,
       event.gender,
@@ -70,10 +67,8 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     ));
   }
 
-  Future<void> updateBirthDate(
-      UpdateBirthDate event, Emitter<ProfileState> emitter) async {
-    final result =
-        await ProfileService().updateDateBorn(event.user, event.date);
+  Future<void> updateBirthDate(UpdateBirthDate event, Emitter<ProfileState> emitter) async {
+    final result = await ProfileService().updateDateBorn(event.user, event.date);
 
     if (result is DataSuccess<CustomUser>) {
       await LocalUserService.saveUser(result.data);
@@ -87,8 +82,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     ));
   }
 
-  Future<void> updateHobby(
-      UpdateHobby event, Emitter<ProfileState> emitter) async {
+  Future<void> updateHobby(UpdateHobby event, Emitter<ProfileState> emitter) async {
     final result = await ProfileService().updateHobby(event.hobbies, event.id);
 
     if (result is DataSuccess<CustomUser>) {
@@ -104,22 +98,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     ));
   }
 
-  Future<void> addChat(
-      AddUserOnChat event, Emitter<ProfileState> emitter) async {
-    final result = await ProfileService().updateUserChat(
-      event.user,
-      event.userId,
-    );
+  Future<void> addChat(AddUserOnChat event, Emitter<ProfileState> emitter) async {
+    final result = await ProfileService().updateUserChat(event.user, event.userId);
 
     if (result is DataSuccess<CustomUser>) {
-      emitter(AddUserChatSuccess(
-        user: result.data,
-      ));
+      emitter(AddUserChatSuccess(user: result.data));
       return;
     }
-    emitter(ProfileError(
-      message: result.message,
-      user: state.user,
-    ));
+    emitter(ProfileError(message: result.message, user: state.user));
   }
 }

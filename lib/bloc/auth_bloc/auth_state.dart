@@ -2,6 +2,7 @@ part of 'auth_bloc.dart';
 
 abstract class AuthState {
   final CustomUser? user;
+
   const AuthState({this.user});
 }
 
@@ -14,9 +15,9 @@ class AuthLoadingState extends AuthState {
 }
 
 class SignInWithGoogleSuccess extends AuthState {
-  const SignInWithGoogleSuccess({
-    required super.user,
-  });
+  final CustomUser user;
+
+  const SignInWithGoogleSuccess(this.user);
 }
 
 class SignInWithGoogleFailed extends AuthState {

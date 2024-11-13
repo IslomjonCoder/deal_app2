@@ -21,7 +21,7 @@ class PlacePage extends StatelessWidget {
           builder: (context, state) {
             if (state is EventLoadedState) {
               return ListView.separated(
-                separatorBuilder: (context, index) => SizedBox(height: 27.h),
+                separatorBuilder: (context, index) => SizedBox(height: 24.h),
                 itemCount: state.events.length,
                 itemBuilder: (context, index) {
                   return Column(
