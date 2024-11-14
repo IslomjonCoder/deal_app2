@@ -221,6 +221,7 @@ class MeetingCard extends StatelessWidget {
     );
   }
 
+
   Widget contentWidget(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(color: Colors.white, borderRadius: BorderRadius.vertical(bottom: Radius.circular(24))),
